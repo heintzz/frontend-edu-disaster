@@ -26,7 +26,7 @@ export default function Home() {
               return (
                 <SwiperSlide className="py-16 px-4" key={index}>
                   <DisasterCard
-                    index={index}
+                    index={index + 1}
                     imageSrc="https://images.unsplash.com/photo-1714733710199-ce4532b6a3b2?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     title="Erupsi"
                     description="Pelajari kronologi erupsi secara interaktif dan visual yang menarik
