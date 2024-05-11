@@ -15,12 +15,12 @@ const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 export default function Home() {
   return (
     <div className="w-screen h-screen bg-[#253333] p-10">
-      <p className={`${caesar_dressing.className} text-white text-5xl text-center`}>
-        PILIH KARTU UNTUK MEMULAI
-      </p>
-      <div className="h-[calc(100%-78px)] relative flex items-center justify-center mt-10">
+      <div className="h-[calc(100%-58px)] relative flex flex-col gap-y-10 items-center justify-center mt-10">
+        <p className={`${caesar_dressing.className} text-white text-5xl text-center`}>
+          PILIH KARTU UNTUK MEMULAI
+        </p>
         <div className="max-w-[1580px]">
-          {/* BUG: waktu init stretching */}
+          {/* BUG: waktu init stretching -> coba ulang prosesnya dari awal, amati keganjilannya */}
           <Swiper slidesPerView={3} spaceBetween={60} loop={true} initialSlide={0}>
             {Array.from({ length: 5 }).map((_, index) => {
               return (

@@ -13,13 +13,15 @@ export default function DisasterCard({ index, imageSrc, title, description, onCl
             backgroundImage: `url(${imageSrc})`,
           }}
         >
-          <div className="h-8 w-8 bg-[#D9D9D9] absolute left-1/2 -translate-x-1/2 grid place-content-center rotate-45 -bottom-4">
-            <span className="-rotate-45 font-otomanopee text-[#A65526] text-xl">{index}</span>
+          <div className="h-12 w-12 bg-[#D9D9D9] absolute left-1/2 -translate-x-1/2 grid place-content-center rotate-45 -bottom-6">
+            <span className="-rotate-45 font-otomanopee text-[#A65526] text-3xl font-semibold">
+              {index}
+            </span>
           </div>
         </div>
-        <div className="h-[40%] w-full relative z-[2] bg-black  text-white rounded-b-3xl text-center pt-10 grid px-5 pb-2">
-          <p className="font-otomanopee text-2xl font-semibold">{title}</p>
-          <p className={assistant.className}>{description}</p>
+        <div className="h-[40%] flex flex-col gap-y-10 items-center justify-center w-full relative z-[2] bg-black text-white rounded-b-3xl text-center px-6 py-2">
+          <p className="font-otomanopee text-5xl font-semibold">{title}</p>
+          <p className={`${assistant.className} text-[22px]`}>{description}</p>
         </div>
       </div>
       <div className="h-full w-full bg-[#29ADB2] blur-md rounded-3xl absolute top-0 z-[2]"></div>

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        otomanopee: ['Otomanopee', 'monospace'],
+        otomanopee: ['Otomanopee One', 'monospace'],
       },
     },
   },

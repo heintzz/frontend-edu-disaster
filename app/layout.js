@@ -11,7 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap"
+          rel="stylesheet"
+        ></link>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
