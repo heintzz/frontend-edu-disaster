@@ -23,7 +23,7 @@ const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 const Container = ({ children }) => {
   return (
-    <div className="w-screen h-screen bg-[#253333] pt-16">
+    <div className="w-screen h-screen flex flex-col bg-[#253333]">
       <Navigation />
       {children}
     </div>
@@ -52,16 +52,18 @@ export default function Home() {
     case enums.ACTIVITY.IDLE:
       return (
         <Container>
-          <div className="h-full relative flex flex-col gap-y-10 items-center justify-center">
-            <p className={`${caesar_dressing.className} text-white text-5xl text-center`}>
+          <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
+            <p
+              className={`${caesar_dressing.className} text-white text-lg lg:text-5xl text-center`}
+            >
               PILIH KARTU UNTUK MEMULAI
             </p>
-            <div className="max-w-[1080px]">
+            <div className="max-w-[600px] lg:max-w-[1080px]">
               {/* BUG: waktu init stretching -> coba ulang prosesnya dari awal, amati keganjilannya */}
               <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
                 {Array.from({ length: 5 }).map((_, index) => {
                   return (
-                    <SwiperSlide className="py-16 px-4" key={index}>
+                    <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
                       <DisasterCard
                         index={index + 1}
                         imageSrc="https://images.unsplash.com/photo-1714733710199-ce4532b6a3b2?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -83,12 +85,12 @@ export default function Home() {
     case enums.ACTIVITY.ERUPTION:
       return (
         <Container>
-          <div className="h-full p-20">
+          <div className="h-full p-5 lg:p-20">
             <div className="h-full bg-white rounded-3xl relative">
               <Image
                 src={closeBtn}
                 alt="close button"
-                className="absolute -right-4 -top-4"
+                className="absolute w-8 h-8 -right-3 -top-3 lg:-right-4 lg:-top-4"
                 onClick={() => setActivity('idle')}
                 role="button"
               />

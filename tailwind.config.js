@@ -10,7 +10,10 @@ module.exports = {
       fontFamily: {
         otomanopee: ['Otomanopee One', 'monospace'],
         odor: ['Odor Mean Chey', 'monospace'],
-        nunito: ['Nunito Sans', 'monospace']
+        nunito: ['Nunito Sans', 'monospace'],
+      },
+      blur: {
+        sm: '8px',
       },
     },
   },
