@@ -5,7 +5,7 @@ const assistant = Assistant({ subsets: ['latin'], weight: '400' });
 
 export default function DisasterCard({ index, imageSrc, title, description, onClick }) {
   return (
-    <div className="relative h-[720px]">
+    <div className="relative h-[720px] cursor-pointer" onClick={onClick}>
       <div className="h-full bg-black flex flex-col rounded-3xl relative z-[3]">
         <div
           className="h-[60%] w-full z-[3] bg-red-200 rounded-3xl relative bg-cover bg-center bg-no-repeat"
