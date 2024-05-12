@@ -1,88 +1,94 @@
 'use client';
 
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { IoCloseCircleOutline } from 'react-icons/io5';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import MarkerIcon from '../node_modules/leaflet/dist/images/marker-icon.png';
 import MarkerShadow from '../node_modules/leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
-import { useState } from 'react';
+
+import '../styles/tooltip.css';
+import { useRef } from 'react';
 
 const Map = () => {
   const indonesiaCoordinate = [-0.7893, 113.9213];
-  const [coord, setCoord] = useState(indonesiaCoordinate);
 
-  const SearchLocation = () => {
-    return (
-      <div className="search-location">
-        <input type="text" placeholder="Search Location" />
-      </div>
-    );
-  };
+  const popupRef = useRef(null);
+
+  const marker = L.icon({
+    iconUrl: 'https://i.ibb.co/7zFvDSt/Play.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
 
   L.TileLayer.prototype.options.minZoom = 6;
 
-  const GetMyLocation = () => {
-    const getMyLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          setCoord([position.coords.latitude, position.coords.longitude]);
-        });
-      } else {
-        console.log('Geolocation is not supported by this browser.');
-      }
-    };
-
-    return (
-      <div className="get-my-location">
-        <button onClick={getMyLocation}>Get My Location</button>
-      </div>
-    );
-  };
-
   return (
     <div>
-      <SearchLocation />
-      <GetMyLocation />
       <MapContainer
         style={{
           height: '100vh',
           width: '100vw',
         }}
-        center={coord}
+        center={indonesiaCoordinate}
         zoom={6}
+        attributionControl={false}
+        zoomControl={false}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.arcgis.com/">ArcGIS</a> contributors'
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         />
-        <CircleMarker
-          center={[-7.797068, 110.370529]}
-          radius={8}
-          color="blue"
-          fillColor="blue"
-          fillOpacity={0.5}
-        >
-          <Popup>
-            <p className="text-[20px]">Yogyakarta</p>
-          </Popup>
-        </CircleMarker>
 
-        <Marker
-          icon={
-            new L.Icon({
-              iconUrl: MarkerIcon.src,
-              iconRetinaUrl: MarkerIcon.src,
-              iconSize: [25, 41],
-              iconAnchor: [12.5, 41],
-              popupAnchor: [0, -41],
-              shadowUrl: MarkerShadow.src,
-              shadowSize: [41, 41],
-            })
-          }
-          position={[51.505, -0.09]}
-        >
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+        <TileLayer
+          attribution='&copy; <a href="https://www.arcgis.com/">ArcGIS</a> contributors'
+          url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+        />
+
+        <Marker position={[-7.80168, 110.365529]} icon={marker}>
+          <Popup closeButton={false} ref={popupRef}>
+            <div className="py-1 w-[260px]">
+              <IoCloseCircleOutline
+                size={24}
+                className="absolute top-2 right-2"
+                role="button"
+                onClick={() => {}}
+              />
+              <div>
+                <p className="font-semibold">Erupsi Gunung Merapi</p>
+                <p className="font-semibold">Sleman, D.I. Yogyakarta</p>
+                <div className="description mt-5">
+                  <p>Tahun terjadi: 2010</p>
+                  <p>Banyak korban jiwa: 351 meninggal dunia</p>
+                  <p>Penyebab: </p>
+                  <p>Kronologi: </p>
+                </div>
+              </div>
+            </div>
+          </Popup>
+        </Marker>
+
+        <Marker position={[-6.22462, 106.837]} icon={marker}>
+          <Popup closeButton={false}>
+            <div className="py-1 w-[260px]">
+              <IoCloseCircleOutline
+                size={24}
+                className="absolute top-2 right-2"
+                role="button"
+                onClick={() => {}}
+              />
+              <div>
+                <p className="font-semibold">Erupsi Gunung Merapi</p>
+                <p className="font-semibold">Sleman, D.I. Yogyakarta</p>
+                <div className="description mt-5">
+                  <p>Tahun terjadi: 2010</p>
+                  <p>Banyak korban jiwa: 351 meninggal dunia</p>
+                  <p>Penyebab: </p>
+                  <p>Kronologi: </p>
+                </div>
+              </div>
+            </div>
           </Popup>
         </Marker>
       </MapContainer>
