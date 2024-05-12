@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         otomanopee: ['Otomanopee One', 'monospace'],
+        odor: ['Odor Mean Chey', 'monospace'],
+        nunito: ['Nunito Sans', 'monospace']
       },
     },
   },
