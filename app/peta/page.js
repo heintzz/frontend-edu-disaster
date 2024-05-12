@@ -5,10 +5,8 @@ import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 import arrow from '../../public/arrowBack.svg';
 
-import { BsChatRightDots } from 'react-icons/bs';
-import { FaRegCircleUser } from 'react-icons/fa6';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Link from 'next/link';
 
 const DynamicMap = dynamic(() => import('../../components/Map'), {
   ssr: false,

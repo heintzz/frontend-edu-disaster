@@ -12,16 +12,18 @@ import { activityState } from '@/atoms/user.activity';
 import DisasterCard from '@/components/DisasterCard';
 import Navigation from '@/components/Navigation';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 import closeBtn from '../public/closeBtn.svg';
+
+import enums from '@/enums/enum';
 
 const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 const Container = ({ children }) => {
   return (
-    <div className="w-screen h-screen bg-[#253333] p-10">
+    <div className="w-screen h-screen bg-[#253333] pt-16">
       <Navigation />
       {children}
     </div>
@@ -37,7 +39,7 @@ export default function Home() {
     if (activityParam) {
       setActivity(activityParam);
     } else {
-      setActivity('idle');
+      setActivity(enums.ACTIVITY.IDLE);
     }
   }, []);
 
@@ -47,16 +49,16 @@ export default function Home() {
   }, [activity]);
 
   switch (activity) {
-    case 'idle':
+    case enums.ACTIVITY.IDLE:
       return (
         <Container>
-          <div className="h-[calc(100%-58px)] relative flex flex-col gap-y-10 items-center justify-center mt-10">
+          <div className="h-full relative flex flex-col gap-y-10 items-center justify-center">
             <p className={`${caesar_dressing.className} text-white text-5xl text-center`}>
               PILIH KARTU UNTUK MEMULAI
             </p>
-            <div className="max-w-[1580px]">
+            <div className="max-w-[1080px]">
               {/* BUG: waktu init stretching -> coba ulang prosesnya dari awal, amati keganjilannya */}
-              <Swiper slidesPerView={3} spaceBetween={60} loop={true} initialSlide={0}>
+              <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
                 {Array.from({ length: 5 }).map((_, index) => {
                   return (
                     <SwiperSlide className="py-16 px-4" key={index}>
@@ -78,11 +80,11 @@ export default function Home() {
           </div>
         </Container>
       );
-    case 'eruption':
+    case enums.ACTIVITY.ERUPTION:
       return (
         <Container>
-          <div className="mt-20 h-[calc(100%-80px)] p-5">
-            <div className="w-full h-full bg-white rounded-3xl p-5 relative">
+          <div className="h-full p-20">
+            <div className="h-full bg-white rounded-3xl relative">
               <Image
                 src={closeBtn}
                 alt="close button"
