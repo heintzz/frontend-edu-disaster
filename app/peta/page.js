@@ -21,7 +21,7 @@ const BackToHomeButton = ({ onClick }) => {
       onClick={onClick}
       style={{
         position: 'absolute',
-        top: '100px',
+        top: '80px',
         left: '60px',
         zIndex: 1000,
       }}
@@ -38,7 +38,7 @@ const BackButton = () => {
       className={`flex items-center gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold py-2 px-4 rounded-[10px] text-2xl`}
       style={{
         position: 'absolute',
-        bottom: '20px',
+        bottom: '16px',
         left: '60px',
         zIndex: 1000,
       }}
