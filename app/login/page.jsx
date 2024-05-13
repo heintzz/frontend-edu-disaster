@@ -3,8 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
+    const router = useRouter();
+
+    const handleRegister = () => {
+        router.push('/register')
+    }
+
     return (
         <div className='w-screen h-screen bg-[#29ADB280] flex justify-between items-center px-[3vw] py-[7vh]'>
             <div className='flex justify-center items-center w-3/5'>
@@ -30,19 +37,19 @@ const Page = () => {
                     <div className='w-full flex flex-col gap-2'>
                         <p className='font-nunito font-semibold text-sm text-[#DDDDDD]'>Email</p>
                         <input
-                            className='w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] font-nunito text-sm bg-[#253333]'
+                            className='w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] font-nunito text-sm bg-[#253333] focus:outline-none'
                             type="email"
-                            placeholder="Enter your email address"
+                            placeholder="mail@abc.com"
                         />
                     </div>
                     <div className='w-full flex flex-col gap-2'>
                         <p className='font-nunito font-semibold text-sm text-[#DDDDDD]'>Password</p>
                         <input
-                            className='w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] font-nunito text-sm bg-[#253333]'
+                            className='w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] font-nunito text-sm bg-[#253333] focus:outline-none'
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder="*********"
                         />
-                        <div className='flex items-center mt-1'>
+                        <div className='flex items-center mt-2'>
                             <input
                                 className='w-[12px] h-[12px] border border-[#DED2D9] rounded-md mr-2'
                                 type="checkbox"
@@ -56,7 +63,7 @@ const Page = () => {
                 </div>
                 <div className='w-full flex justify-center mt-[4vh] gap-2'>
                     <p className='font-nunito text-white'>Doesn't have account?</p>
-                    <button className='font-nunito text-white underline font-bold'>Register now</button>
+                    <button className='font-nunito text-white underline font-bold' onClick={handleRegister}>Register now</button>
                 </div>
             </div>
         </div>
