@@ -9,7 +9,7 @@ import 'swiper/css/scrollbar';
 
 import { activityState } from '@/atoms/user.activity';
 import DisasterCard from '@/components/DisasterCard';
-import EruptionContent from '@/components/EruptionContent';
+import EruptionContent from '@/components/erupsi/EruptionContent';
 import Modal from '@/components/Modal';
 import Navigation from '@/components/Navigation';
 import enums from '@/enums/enum';
