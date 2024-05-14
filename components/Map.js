@@ -4,11 +4,9 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import MarkerIcon from '../node_modules/leaflet/dist/images/marker-icon.png';
-import MarkerShadow from '../node_modules/leaflet/dist/images/marker-shadow.png';
 
-import '../styles/tooltip.css';
 import { useRef } from 'react';
+import '../styles/tooltip.css';
 
 const Map = () => {
   const indonesiaCoordinate = [-0.7893, 113.9213];
@@ -50,7 +48,7 @@ const Map = () => {
                 size={24}
                 className="absolute top-2 right-2"
                 role="button"
-                onClick={() => {}}
+                onClick={() => popupRef.current.handlePopupClose()}
               />
               <div>
                 <p className="font-semibold">Erupsi Gunung Merapi</p>

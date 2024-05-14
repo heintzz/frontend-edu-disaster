@@ -12,12 +12,12 @@ const DynamicMap = dynamic(() => import('../../components/Map'), {
   ssr: false,
 });
 
-const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
+const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 const BackToHomeButton = ({ onClick }) => {
   return (
     <button
-      className={`flex items-center absolute top-10 lg:top-14 left-14 z-[1000] gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
+      className={`flex items-center absolute top-10 lg:top-14 left-14 z-[1000] gap-x-2 ${caesarDressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
       onClick={onClick}
     >
       <Image src={arrow} alt="back icon" className="w-6 h-6" />
@@ -29,7 +29,7 @@ const BackToHomeButton = ({ onClick }) => {
 const BackButton = () => {
   return (
     <button
-      className={`flex items-center gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
+      className={`flex items-center gap-x-2 ${caesarDressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
       style={{
         position: 'absolute',
         bottom: '16px',

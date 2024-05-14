@@ -37,6 +37,14 @@ const Container = ({ children }) => {
 
 const activitiesMenu = [
   {
+    order: 5,
+    title: 'Evaluasi',
+    imageSrc: evaluationImage,
+    description: 'Uji pemahamanmu terkait materi yang sudah dipelajari sebelumnya.',
+    stage: enums.ACTIVITY.EVALUATION,
+  },
+  {
+    order: 1,
     title: 'Erupsi',
     imageSrc: eruptionImage,
     description:
@@ -44,6 +52,7 @@ const activitiesMenu = [
     state: enums.ACTIVITY.ERUPTION,
   },
   {
+    order: 2,
     title: 'Tsunami',
     imageSrc: tsunamiImage,
     description:
@@ -51,6 +60,7 @@ const activitiesMenu = [
     stage: enums.ACTIVITY.TSUNAMI,
   },
   {
+    order: 3,
     title: 'Gempa Bumi',
     imageSrc: earthquakeImage,
     description:
@@ -58,17 +68,12 @@ const activitiesMenu = [
     stage: enums.ACTIVITY.EARTHQUAKE,
   },
   {
+    order: 4,
     title: 'Mitigasi',
     imageSrc: mitigationImage,
     description:
       'Pelajari terkait mitigasi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis.',
     stage: enums.ACTIVITY.MITIGATION,
-  },
-  {
-    title: 'Evaluasi',
-    imageSrc: evaluationImage,
-    description: 'Uji pemahamanmu terkait materi yang sudah dipelajari sebelumnya.',
-    stage: enums.ACTIVITY.EVALUATION,
   },
 ];
 
@@ -105,7 +110,7 @@ export default function Home() {
                   return (
                     <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
                       <DisasterCard
-                        index={index + 1}
+                        index={activity.order}
                         imageSrc={activity.imageSrc}
                         title={activity.title}
                         description={activity.description}
