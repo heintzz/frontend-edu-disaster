@@ -1,6 +1,5 @@
 'use client';
 
-import { Caesar_Dressing } from 'next/font/google';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -10,16 +9,22 @@ import 'swiper/css/scrollbar';
 
 import { activityState } from '@/atoms/user.activity';
 import DisasterCard from '@/components/DisasterCard';
+import EruptionContent from '@/components/EruptionContent';
+import Modal from '@/components/Modal';
 import Navigation from '@/components/Navigation';
-import Image from 'next/image';
+import enums from '@/enums/enum';
+
+import { Caesar_Dressing } from 'next/font/google';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
-import closeBtn from '../public/closeBtn.svg';
+import eruptionImage from '../public/menu/erupsi.png';
+import evaluationImage from '../public/menu/evaluasi.png';
+import earthquakeImage from '../public/menu/gempa.png';
+import mitigationImage from '../public/menu/mitigasi.png';
+import tsunamiImage from '../public/menu/tsunami.png';
 
-import enums from '@/enums/enum';
-
-const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
+const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 const Container = ({ children }) => {
   return (
@@ -29,6 +34,43 @@ const Container = ({ children }) => {
     </div>
   );
 };
+
+const activitiesMenu = [
+  {
+    title: 'Erupsi',
+    imageSrc: eruptionImage,
+    description:
+      'Pelajari kronologi erupsi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis',
+    state: enums.ACTIVITY.ERUPTION,
+  },
+  {
+    title: 'Tsunami',
+    imageSrc: tsunamiImage,
+    description:
+      'Pelajari kronologi tsunami secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis',
+    stage: enums.ACTIVITY.TSUNAMI,
+  },
+  {
+    title: 'Gempa Bumi',
+    imageSrc: earthquakeImage,
+    description:
+      'Pelajari kronologi gempa bumi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis',
+    stage: enums.ACTIVITY.EARTHQUAKE,
+  },
+  {
+    title: 'Mitigasi',
+    imageSrc: mitigationImage,
+    description:
+      'Pelajari terkait mitigasi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis.',
+    stage: enums.ACTIVITY.MITIGATION,
+  },
+  {
+    title: 'Evaluasi',
+    imageSrc: evaluationImage,
+    description: 'Uji pemahamanmu terkait materi yang sudah dipelajari sebelumnya.',
+    stage: enums.ACTIVITY.EVALUATION,
+  },
+];
 
 export default function Home() {
   const [activity, setActivity] = useRecoilState(activityState);
@@ -52,26 +94,23 @@ export default function Home() {
     case enums.ACTIVITY.IDLE:
       return (
         <Container>
+          {/* <ChatbotMenu />  */}
           <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
-            <p
-              className={`${caesar_dressing.className} text-white text-lg lg:text-5xl text-center`}
-            >
+            <p className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}>
               PILIH KARTU UNTUK MEMULAI
             </p>
             <div className="max-w-[600px] lg:max-w-[1080px]">
-              {/* BUG: waktu init stretching -> coba ulang prosesnya dari awal, amati keganjilannya */}
               <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
-                {Array.from({ length: 5 }).map((_, index) => {
+                {activitiesMenu.map((activity, index) => {
                   return (
                     <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
                       <DisasterCard
                         index={index + 1}
-                        imageSrc="https://images.unsplash.com/photo-1714733710199-ce4532b6a3b2?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        title="Erupsi"
-                        description="Pelajari kronologi erupsi secara interaktif dan visual yang menarik
-                            melalui simulasi AR yang imersif dan realistis."
+                        imageSrc={activity.imageSrc}
+                        title={activity.title}
+                        description={activity.description}
                         onClick={() => {
-                          setActivity('eruption');
+                          setActivity(activity.state);
                         }}
                       />
                     </SwiperSlide>
@@ -85,18 +124,9 @@ export default function Home() {
     case enums.ACTIVITY.ERUPTION:
       return (
         <Container>
-          <div className="h-full p-5 lg:p-20">
-            <div className="h-full bg-white rounded-3xl relative">
-              <Image
-                src={closeBtn}
-                alt="close button"
-                className="absolute w-8 h-8 -right-3 -top-3 lg:-right-4 lg:-top-4"
-                onClick={() => setActivity('idle')}
-                role="button"
-              />
-              <div>isi disini yhh</div>
-            </div>
-          </div>
+          <Modal>
+            <EruptionContent />
+          </Modal>
         </Container>
       );
     default:

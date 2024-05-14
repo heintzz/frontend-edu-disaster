@@ -17,14 +17,8 @@ const caesar_dressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 const BackToHomeButton = ({ onClick }) => {
   return (
     <button
-      className={`flex items-center gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold py-2 px-4 rounded-[10px] text-2xl`}
+      className={`flex items-center absolute top-10 lg:top-14 left-14 z-[1000] gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
       onClick={onClick}
-      style={{
-        position: 'absolute',
-        top: '80px',
-        left: '60px',
-        zIndex: 1000,
-      }}
     >
       <Image src={arrow} alt="back icon" className="w-6 h-6" />
       <span>Ke Halaman Utama</span>
@@ -35,7 +29,7 @@ const BackToHomeButton = ({ onClick }) => {
 const BackButton = () => {
   return (
     <button
-      className={`flex items-center gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold py-2 px-4 rounded-[10px] text-2xl`}
+      className={`flex items-center gap-x-2 ${caesar_dressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 lg:py-2 lg:px-4 lg:text-2xl`}
       style={{
         position: 'absolute',
         bottom: '16px',

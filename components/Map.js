@@ -27,10 +27,7 @@ const Map = () => {
   return (
     <div>
       <MapContainer
-        style={{
-          height: '100vh',
-          width: '100vw',
-        }}
+        className="w-full h-[calc(100dvh-40px)]"
         center={indonesiaCoordinate}
         zoom={6}
         attributionControl={false}
