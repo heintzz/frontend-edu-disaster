@@ -15,7 +15,7 @@ import Navigation from '@/components/Navigation';
 import enums from '@/enums/enum';
 
 import { Caesar_Dressing } from 'next/font/google';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 import eruptionImage from '../public/menu/erupsi.png';
@@ -80,7 +80,15 @@ const activitiesMenu = [
   },
 ];
 
-export default function Home() {
+const SuspenseHome = () => {
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  );
+};
+
+function Home() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [activity, setActivity] = useRecoilState(activityState);
@@ -142,3 +150,5 @@ export default function Home() {
       return <Container></Container>;
   }
 }
+
+export default SuspenseHome;
