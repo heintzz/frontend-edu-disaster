@@ -9,12 +9,16 @@ import 'swiper/css/scrollbar';
 
 import { activityState } from '@/atoms/user.activity';
 import DisasterCard from '@/components/DisasterCard';
-import EruptionContent from '@/components/erupsi/EruptionContent';
 import Modal from '@/components/Modal';
 import Navigation from '@/components/Navigation';
+import EruptionContent from '@/components/erupsi/EruptionContent';
+import MitigationContent from '@/components/mitigasi/MitigationContent';
 import enums from '@/enums/enum';
+import { createUrl } from '@/lib/utils';
 
+import Link from 'next/link';
 import { Caesar_Dressing } from 'next/font/google';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -23,9 +27,6 @@ import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
 import mitigationImage from '../public/menu/mitigasi.png';
 import tsunamiImage from '../public/menu/tsunami.png';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { createUrl } from '@/lib/utils';
-import Link from 'next/link';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -44,7 +45,7 @@ const activitiesMenu = [
     title: 'Evaluasi',
     imageSrc: evaluationImage,
     description: 'Uji pemahamanmu terkait materi yang sudah dipelajari sebelumnya.',
-    stage: enums.ACTIVITY.EVALUATION,
+    state: enums.ACTIVITY.EVALUATION,
   },
   {
     order: 1,
@@ -60,7 +61,7 @@ const activitiesMenu = [
     imageSrc: tsunamiImage,
     description:
       'Pelajari kronologi tsunami secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis',
-    stage: enums.ACTIVITY.TSUNAMI,
+    state: enums.ACTIVITY.TSUNAMI,
   },
   {
     order: 3,
@@ -68,7 +69,7 @@ const activitiesMenu = [
     imageSrc: earthquakeImage,
     description:
       'Pelajari kronologi gempa bumi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis',
-    stage: enums.ACTIVITY.EARTHQUAKE,
+    state: enums.ACTIVITY.EARTHQUAKE,
   },
   {
     order: 4,
@@ -76,7 +77,7 @@ const activitiesMenu = [
     imageSrc: mitigationImage,
     description:
       'Pelajari terkait mitigasi secara interaktif dan visual yang menarik melalui simulasi AR yang imersif dan realistis.',
-    stage: enums.ACTIVITY.MITIGATION,
+    state: enums.ACTIVITY.MITIGATION,
   },
 ];
 
@@ -146,6 +147,14 @@ function Home() {
           <Container>
             <Modal>
               <EruptionContent />
+            </Modal>
+          </Container>
+        );
+      case enums.ACTIVITY.MITIGATION:
+        return (
+          <Container>
+            <Modal>
+              <MitigationContent />
             </Modal>
           </Container>
         );

@@ -1,16 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
-import { Assistant, Caesar_Dressing } from 'next/font/google';
+import { Plus_Jakarta_Sans, Caesar_Dressing } from 'next/font/google';
 
-import arrowBack from '../../public/arrowBack.svg';
-import arrowNext from '../../public/arrowNext.svg';
-import eruptionImage from '../../public/display/erupsi.png';
-import dummyQR from '../../public/display/dummyQR.png';
+import enums from '@/enums/enum';
 import { useState } from 'react';
+import dummyQR from '../../public/display/dummyQR.png';
+import eruptionImage from '../../public/display/erupsi.png';
+import BackButton from '../button/BackButton';
+import ExploreMapButton from '../button/ExploreMapButton';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
-const assistant = Assistant({ subsets: ['latin'], weight: '400' });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: '400' });
 
 export default function MateriErupsi({ handleBack }) {
   const [showImage, setShowImage] = useState(true);
@@ -40,7 +40,7 @@ export default function MateriErupsi({ handleBack }) {
       <div className="flex flex-col gap-y-2 lg:gap-y-10 lg:-ml-10 pr-10">
         <p className={`${caesarDressing.className} lg:text-4xl`}>Proses Terjadinya Erupsi</p>
         <div
-          className={`${assistant.className} max-h-[50%] lg:max-h-[100%] overflow-y-auto text-[10px] md:text-xs lg:text-base`}
+          className={`${plusJakarta.className} max-h-[50%] lg:max-h-[100%] overflow-y-auto text-[10px] md:text-xs lg:text-base`}
         >
           <p>
             Erupsi gunung berapi merupakan proses kompleks yang melibatkan interaksi berbagai
@@ -54,32 +54,10 @@ export default function MateriErupsi({ handleBack }) {
             faktor, seperti komposisi magma, viskositas, dan keberadaan air. Erupsi dapat
             menghasilkan berbagai macam produk, seperti lava, abu vulkanik, dan gas beracun.
           </p>
-          <p>
-            Saat magma mencapai permukaan, terjadilah erupsi. Jenis erupsi tergantung pada berbagai
-            faktor, seperti komposisi magma, viskositas, dan keberadaan air. Erupsi dapat
-            menghasilkan berbagai macam produk, seperti lava, abu vulkanik, dan gas beracun.
-          </p>
-          <p>
-            Saat magma mencapai permukaan, terjadilah erupsi. Jenis erupsi tergantung pada berbagai
-            faktor, seperti komposisi magma, viskositas, dan keberadaan air. Erupsi dapat
-            menghasilkan berbagai macam produk, seperti lava, abu vulkanik, dan gas beracun.
-          </p>
         </div>
       </div>
-      <button
-        className={`absolute bottom-3 lg:bottom-9 left-4 flex items-center gap-x-2 ${caesarDressing.className} bg-[#29ADB2] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl`}
-      >
-        <span onClick={handleBack}>Kembali</span>
-        <Image src={arrowBack} alt="back icon" className="w-6 h-6" />
-      </button>
-      <Link href="/peta?bencana=erupsi">
-        <button
-          className={`absolute bottom-3 lg:bottom-9 right-4 flex items-center gap-x-2 ${caesarDressing.className} bg-[#29ADB2] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl`}
-        >
-          <span>Jelajahi peta interaktif</span>
-          <Image src={arrowNext} alt="next icon" className="w-6 h-6" />
-        </button>
-      </Link>
+      <BackButton back={handleBack} />
+      <ExploreMapButton disaster={enums.ACTIVITY.ERUPTION} />
     </div>
   );
 }
