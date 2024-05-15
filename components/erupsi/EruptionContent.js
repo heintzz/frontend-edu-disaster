@@ -1,24 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Assistant, Caesar_Dressing } from 'next/font/google';
-
-import Image from 'next/image';
-import arrowBack from '../../public/arrowBack.svg';
-import arrowNext from '../../public/arrowNext.svg';
-
-import eruptionImage from '../../public/display/erupsi.png';
-import dummyQR from '../../public/display/dummyQR.png';
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import MateriErupsi from './MateriErupsi';
 import VideoErupsi from './VideoErupsi';
-import enums from '@/enums/enum';
-
-const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
-const assistant = Assistant({ subsets: ['latin'], weight: '400' });
 
 export default function EruptionContent() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const searchParams = useSearchParams();
+
   const token = '';
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+    const index = urlParams.get('index');
+    setActiveIndex(parseInt(index));
+  }, []);
 
   // const updateProgress = async () => {
   //   try {
@@ -45,11 +42,18 @@ export default function EruptionContent() {
 
   const handleNext = () => {
     setActiveIndex((prev) => prev + 1);
+    const indexSearchParams = new URLSearchParams(searchParams.toString());
+    indexSearchParams.set('index', activeIndex + 1);
+    window.history.pushState({}, '', `?${indexSearchParams.toString()}`);
+
     // updateProgress();
   };
 
   const handleBack = () => {
     setActiveIndex((prev) => prev - 1);
+    const indexSearchParams = new URLSearchParams(searchParams.toString());
+    indexSearchParams.set('index', activeIndex - 1);
+    window.history.pushState({}, '', `?${indexSearchParams.toString()}`);
   };
 
   const element = useMemo(() => {

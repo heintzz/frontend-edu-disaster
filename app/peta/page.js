@@ -30,6 +30,7 @@ const BackButton = () => {
   return (
     <button
       className={`flex items-center absolute bottom-4 left-14 z-[1000] gap-x-2 ${caesarDressing.className} bg-[#29ADB2] text-white font-bold rounded-[10px] p-1 text-sm lg:py-2 lg:px-4 lg:text-2xl`}
+      onClick={() => window.history.back()}
     >
       <Image src={arrow} alt="back icon" className="w-6 h-6" />
       <span>Kembali</span>
@@ -45,9 +46,7 @@ export default function HalamanPeta() {
       <Link href="/">
         <BackToHomeButton />
       </Link>
-      <Link href="/">
-        <BackButton />
-      </Link>
+      <BackButton />
     </main>
   );
 }

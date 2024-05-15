@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 const assistantFont = Assistant({ subsets: ['latin'], weight: '400' });
 
-export default function DisasterCard({ index, imageSrc, title, description, onClick }) {
+export default function DisasterCard({ index, imageSrc, title, description }) {
   return (
-    <div className="relative h-[230px] lg:h-[480px] cursor-pointer" onClick={onClick}>
+    <div className="relative h-[230px] lg:h-[480px] cursor-pointer">
       <div className="h-full bg-black flex flex-col rounded-3xl relative z-[3]">
         <div className="h-[60%] w-full z-[3] rounded-3xl relative">
           <Image src={imageSrc} className="w-full rounded-3xl" />

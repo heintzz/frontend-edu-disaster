@@ -23,6 +23,9 @@ import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
 import mitigationImage from '../public/menu/mitigasi.png';
 import tsunamiImage from '../public/menu/tsunami.png';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { createUrl } from '@/lib/utils';
+import Link from 'next/link';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -78,6 +81,8 @@ const activitiesMenu = [
 ];
 
 export default function Home() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [activity, setActivity] = useRecoilState(activityState);
 
   useEffect(() => {
@@ -89,11 +94,6 @@ export default function Home() {
       setActivity(enums.ACTIVITY.IDLE);
     }
   }, []);
-
-  useEffect(() => {
-    const url = new URL(window.location);
-    url.searchParams.set('activity', activity);
-  }, [activity]);
 
   switch (activity) {
     case enums.ACTIVITY.IDLE:
@@ -107,17 +107,21 @@ export default function Home() {
             <div className="max-w-[600px] lg:max-w-[1080px]">
               <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
                 {activitiesMenu.map((activity, index) => {
+                  const activitySearchParams = new URLSearchParams(searchParams.toString());
+                  activitySearchParams.set('activity', activity.state);
+                  activitySearchParams.set('index', 0);
+
+                  const activityURL = createUrl(pathname, activitySearchParams);
                   return (
                     <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
-                      <DisasterCard
-                        index={activity.order}
-                        imageSrc={activity.imageSrc}
-                        title={activity.title}
-                        description={activity.description}
-                        onClick={() => {
-                          setActivity(activity.state);
-                        }}
-                      />
+                      <Link href={activityURL} onClick={() => setActivity(activity.state)}>
+                        <DisasterCard
+                          index={activity.order}
+                          imageSrc={activity.imageSrc}
+                          title={activity.title}
+                          description={activity.description}
+                        />
+                      </Link>
                     </SwiperSlide>
                   );
                 })}
