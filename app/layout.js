@@ -13,9 +13,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         ></link>
       </head>
+      <SpeedInsights />
       <RecoilRoot>
         <body>{children}</body>
-        <SpeedInsights />
       </RecoilRoot>
     </html>
   );

@@ -3,18 +3,23 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import MateriErupsi from './MateriErupsi';
 import VideoErupsi from './VideoErupsi';
+import enums from '@/enums/enum';
 
 export default function EruptionContent() {
   const searchParams = useSearchParams();
 
-  const token = '';
+  // const token = '';
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams);
     const index = urlParams.get('index');
-    setActiveIndex(parseInt(index));
+    if (index) {
+      setActiveIndex(parseInt(index));
+    } else {
+      setActiveIndex(0);
+    }
   }, []);
 
   // const updateProgress = async () => {
@@ -36,24 +41,26 @@ export default function EruptionContent() {
   //     console.log(res);
   //   } catch (error) {
   //     console.log(error);
-  //     alert('error: ' + error);
   //   }
   // };
 
   const handleNext = () => {
     setActiveIndex((prev) => prev + 1);
-    const indexSearchParams = new URLSearchParams(searchParams.toString());
-    indexSearchParams.set('index', activeIndex + 1);
-    window.history.pushState({}, '', `?${indexSearchParams.toString()}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('activity', enums.ACTIVITY.ERUPTION);
+    params.set('index', activeIndex + 1);
 
+    window.history.pushState({}, '', `?${params.toString()}`);
     // updateProgress();
   };
 
   const handleBack = () => {
     setActiveIndex((prev) => prev - 1);
-    const indexSearchParams = new URLSearchParams(searchParams.toString());
-    indexSearchParams.set('index', activeIndex - 1);
-    window.history.pushState({}, '', `?${indexSearchParams.toString()}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('activity', enums.ACTIVITY.ERUPTION);
+    params.set('index', activeIndex - 1);
+
+    window.history.pushState({}, '', `?${params.toString()}`);
   };
 
   const element = useMemo(() => {

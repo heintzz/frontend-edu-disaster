@@ -15,7 +15,7 @@ import Navigation from '@/components/Navigation';
 import enums from '@/enums/enum';
 
 import { Caesar_Dressing } from 'next/font/google';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
 import eruptionImage from '../public/menu/erupsi.png';
@@ -103,52 +103,58 @@ function Home() {
     }
   }, []);
 
-  switch (activity) {
-    case enums.ACTIVITY.IDLE:
-      return (
-        <Container>
-          {/* <ChatbotMenu />  */}
-          <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
-            <p className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}>
-              PILIH KARTU UNTUK MEMULAI
-            </p>
-            <div className="max-w-[600px] lg:max-w-[1080px]">
-              <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
-                {activitiesMenu.map((activity, index) => {
-                  const activitySearchParams = new URLSearchParams(searchParams.toString());
-                  activitySearchParams.set('activity', activity.state);
-                  activitySearchParams.set('index', 0);
+  const element = useMemo(() => {
+    switch (activity) {
+      case enums.ACTIVITY.IDLE:
+        return (
+          <Container>
+            {/* <ChatbotMenu />  */}
+            <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
+              <p
+                className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}
+              >
+                PILIH KARTU UNTUK MEMULAI
+              </p>
+              <div className="max-w-[600px] lg:max-w-[1080px]">
+                <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
+                  {activitiesMenu.map((activity, index) => {
+                    const activitySearchParams = new URLSearchParams(searchParams.toString());
+                    activitySearchParams.set('activity', activity.state);
+                    activitySearchParams.set('index', 0);
 
-                  const activityURL = createUrl(pathname, activitySearchParams);
-                  return (
-                    <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
-                      <Link href={activityURL} onClick={() => setActivity(activity.state)}>
-                        <DisasterCard
-                          index={activity.order}
-                          imageSrc={activity.imageSrc}
-                          title={activity.title}
-                          description={activity.description}
-                        />
-                      </Link>
-                    </SwiperSlide>
-                  );
-                })}
-              </Swiper>
+                    const activityURL = createUrl(pathname, activitySearchParams);
+                    return (
+                      <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
+                        <Link href={activityURL} onClick={() => setActivity(activity.state)}>
+                          <DisasterCard
+                            index={activity.order}
+                            imageSrc={activity.imageSrc}
+                            title={activity.title}
+                            description={activity.description}
+                          />
+                        </Link>
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
+              </div>
             </div>
-          </div>
-        </Container>
-      );
-    case enums.ACTIVITY.ERUPTION:
-      return (
-        <Container>
-          <Modal>
-            <EruptionContent />
-          </Modal>
-        </Container>
-      );
-    default:
-      return <Container></Container>;
-  }
+          </Container>
+        );
+      case enums.ACTIVITY.ERUPTION:
+        return (
+          <Container>
+            <Modal>
+              <EruptionContent />
+            </Modal>
+          </Container>
+        );
+      default:
+        return <Container></Container>;
+    }
+  }, [activity]);
+
+  return element;
 }
 
 export default SuspenseHome;
