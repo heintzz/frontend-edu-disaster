@@ -1,5 +1,6 @@
 'use client';
 import { RecoilRoot } from 'recoil';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       </head>
       <RecoilRoot>
         <body>{children}</body>
+        <SpeedInsights />
       </RecoilRoot>
     </html>
   );
