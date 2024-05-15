@@ -11,6 +11,8 @@ module.exports = {
         otomanopee: ['Otomanopee One', 'monospace'],
         odor: ['Odor Mean Chey', 'monospace'],
         nunito: ['Nunito Sans', 'monospace'],
+        assistant: ['Assistant', 'monospace'],
+        kumbh: ['Kumbh Sans', 'monospace'],
       },
       blur: {
         sm: '8px',
