@@ -18,22 +18,15 @@ const LoginPage = () => {
 
   const loginUser = async () => {
     try {
-      const res = await apiV1('/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-        credentials: 'include',
-      });
-      if (res.ok) {
+      const res = await apiV1.post('/auth/login', loginData);
+      console.log(res);
+      if (res) {
         setLoginData({});
         setWaitingResponse(false);
         router.push('/');
       }
     } catch (error) {
       alert(error.response?.data?.message || error);
-      console.error(error);
       setWaitingResponse(false);
     }
   };
@@ -92,7 +85,7 @@ const LoginPage = () => {
               isWaitingResponse ? 'cursor-not-allowed' : ''
             }`}
           >
-            Masuk
+            {isWaitingResponse ? 'Memproses...' : 'Masuk'}
           </button>
         </div>
         <div className="w-full flex justify-center gap-2">

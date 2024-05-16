@@ -23,14 +23,8 @@ const RegisterPage = () => {
     };
 
     try {
-      const res = await apiV1('/auth/signup', {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (res.ok) {
+      const res = await apiV1.post('/auth/signup', data);
+      if (res) {
         setSignupData({});
         setChosenRole(null);
         alert('Registrasi berhasil');

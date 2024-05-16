@@ -1,3 +1,5 @@
+import apiV1 from '@/lib/api';
+import Cookies from 'js-cookie';
 import { BsChatRightDots } from 'react-icons/bs';
 import { FaRegCircleUser } from 'react-icons/fa6';
 
@@ -9,7 +11,20 @@ const Navigation = () => {
         backgroundImage: 'linear-gradient(to right, #29ADB2, #2C2C2C)',
       }}
     >
-      <FaRegCircleUser color="white" className="w-6 h-6" />
+      <FaRegCircleUser
+        color="white"
+        className="w-6 h-6"
+        onClick={async () => {
+          try {
+            await apiV1('/auth/logout', {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${Cookies.get('access_token')}`,
+              },
+            });
+          } catch (error) {}
+        }}
+      />
       <BsChatRightDots color="white" className="w-6 h-6" />
     </div>
   );
