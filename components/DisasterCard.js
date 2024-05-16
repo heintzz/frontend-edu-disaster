@@ -8,7 +8,7 @@ export default function DisasterCard({ index, imageSrc, title, description }) {
     <div className="relative h-[230px] lg:h-[480px] cursor-pointer">
       <div className="h-full bg-black flex flex-col rounded-3xl relative z-[3]">
         <div className="h-[60%] w-full z-[3] rounded-3xl relative">
-          <Image src={imageSrc} className="w-full rounded-3xl" />
+          <Image src={imageSrc} className="w-full rounded-3xl" alt={title} />
           <div className="h-4 w-4 lg:h-10 lg:w-10 bg-[#D9D9D9] absolute left-1/2 -translate-x-1/2 grid place-content-center rotate-45 -bottom-1 lg:-bottom-7">
             <span className="-rotate-45 font-otomanopee text-[#A65526] text-xs lg:text-3xl font-semibold">
               {index}

@@ -1,7 +1,7 @@
 'use client';
 
 import enums from '@/enums/enum';
-import apiV1 from '@/lib/axios';
+import apiV1 from '@/lib/api';
 
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useState } from 'react';
@@ -23,15 +23,18 @@ const RegisterPage = () => {
     };
 
     try {
-      const res = await apiV1.post('/auth/signup', data, {
+      const res = await apiV1('/auth/signup', {
+        method: 'POST',
+        body: data,
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(res);
-      alert('Register success');
-      setSignupData({});
-      setChosenRole(null);
+      if (res.ok) {
+        setSignupData({});
+        setChosenRole(null);
+        alert('Registrasi berhasil');
+      }
     } catch (error) {
       alert(error.response.data.message);
       console.error(error);
@@ -92,19 +95,21 @@ const RegisterPage = () => {
               />
             </div>
           ))}
-          {/* <div className="flex items-center">
-            <input
-              className="w-[12px] h-[12px] border border-[#DED2D9] rounded-md mr-2"
-              type="checkbox"
-            />
-            <p className="text-xs text-white">Remember Me</p>
-          </div> */}
           <button
             onClick={registerUser}
             className="w-full bg-[#29ADB2] rounded-md py-[10px] font-extrabold text-lg text-white"
           >
             Daftar
           </button>
+          <div className="w-full flex justify-center gap-2">
+            <p className="text-white">Sudah punya akun?</p>
+            <button
+              onClick={() => router.push('/login')}
+              className="text-white underline font-bold"
+            >
+              Masuk!
+            </button>
+          </div>
         </div>
       </div>
     </div>

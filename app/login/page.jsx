@@ -1,6 +1,6 @@
 'use client';
 
-import apiV1 from '@/lib/axios';
+import apiV1 from '@/lib/api';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -18,16 +18,19 @@ const LoginPage = () => {
 
   const loginUser = async () => {
     try {
-      const res = await apiV1.post('/auth/login', loginData, {
+      const res = await apiV1('/auth/login', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(loginData),
+        credentials: 'include',
       });
-      console.log(res);
-      alert('Login success');
-      setLoginData({});
-      setWaitingResponse(false);
-      router.push('/');
+      if (res.ok) {
+        setLoginData({});
+        setWaitingResponse(false);
+        router.push('/');
+      }
     } catch (error) {
       alert(error.response?.data?.message || error);
       console.error(error);
@@ -85,7 +88,9 @@ const LoginPage = () => {
           </div>
           <button
             onClick={loginUser}
-            className="w-full bg-[#29ADB2] rounded-md py-[10px] font-extrabold text-lg text-white"
+            className={`w-full bg-[#29ADB2] rounded-md py-[10px] font-extrabold text-lg text-white ${
+              isWaitingResponse ? 'cursor-not-allowed' : ''
+            }`}
           >
             Masuk
           </button>
@@ -94,9 +99,7 @@ const LoginPage = () => {
           <p className="text-white">Belum punya akun?</p>
           <button
             onClick={() => router.push('/register')}
-            className={`text-white underline font-bold ${
-              isWaitingResponse ? 'cursor-not-allowed' : ''
-            }`}
+            className="text-white underline font-bold"
           >
             Daftar di sini!
           </button>
