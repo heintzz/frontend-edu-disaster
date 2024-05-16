@@ -19,9 +19,17 @@ const MODULES = {
   EVALUATION: 8,
 };
 
+const ROLE = {
+  TEACHER: 'teacher',
+  STUDENT: 'student',
+  ADMIN: 'admin',
+  SUPERADMIN: 'superadmin',
+};
+
 const enums = {
   ACTIVITY,
   MODULES,
+  ROLE,
 };
 
 export default enums;
