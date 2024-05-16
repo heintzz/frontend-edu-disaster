@@ -16,12 +16,7 @@ const Navigation = () => {
         className="w-6 h-6"
         onClick={async () => {
           try {
-            await apiV1('/auth/logout', {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${Cookies.get('access_token')}`,
-              },
-            });
+            await apiV1.get('/auth/logout');
           } catch (error) {}
         }}
       />
