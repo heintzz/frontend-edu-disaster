@@ -16,8 +16,8 @@ import MitigationContent from '@/components/mitigasi/MitigationContent';
 import enums from '@/enums/enum';
 import { createUrl } from '@/lib/utils';
 
-import Link from 'next/link';
 import { Caesar_Dressing } from 'next/font/google';
+import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
@@ -122,11 +122,16 @@ function Home() {
                     const activitySearchParams = new URLSearchParams(searchParams.toString());
                     activitySearchParams.set('activity', activity.state);
                     activitySearchParams.set('index', 0);
-
                     const activityURL = createUrl(pathname, activitySearchParams);
+
                     return (
                       <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
-                        <Link href={activityURL} onClick={() => setActivity(activity.state)}>
+                        <Link
+                          href={
+                            activity.state === enums.ACTIVITY.EVALUATION ? '/eval' : activityURL
+                          }
+                          onClick={() => setActivity(activity.state)}
+                        >
                           <DisasterCard
                             index={activity.order}
                             imageSrc={activity.imageSrc}
