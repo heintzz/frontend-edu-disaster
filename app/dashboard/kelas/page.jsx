@@ -9,7 +9,7 @@ const Page = () => {
     const router = useRouter();
 
     const handleBuatKelas = () => {
-        router.push('/guru/dashboard/buatKelas');
+        router.push('/dashboard/kelas/buat');
     };
 
     return (

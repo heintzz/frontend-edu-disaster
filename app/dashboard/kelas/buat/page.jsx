@@ -28,7 +28,7 @@ const Page = () => {
     const router = useRouter();
 
     const handleDashboard = () => {
-        router.push('/guru/dashboard');
+        router.push('/dashboard/kelas');
     };
 
     return (
@@ -36,12 +36,12 @@ const Page = () => {
             <NavbarGuru />
             <div className='w-4/5 px-[5vh] py-[4vh] flex flex-col justify-between'>
                 <div className='flex flex-col gap-12'>
-                    <div className='flex gap-4 items-center'>
+                    <div className='flex gap-4 items-center cursor-pointer' onClick={handleDashboard}>
                         <IoArrowBackOutline 
                             size={24}
                             color='black'
                         />
-                        <button className='font-kumbh font-semibold text-xl' onClick={handleDashboard}>Buat Kelas</button>
+                        <button className='font-kumbh font-semibold text-xl'>Buat Kelas</button>
                     </div>
                     <div className='flex flex-col gap-4'>
                         <div className='flex flex-col gap-2'>
