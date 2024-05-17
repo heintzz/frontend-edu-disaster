@@ -27,6 +27,8 @@ import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
 import mitigationImage from '../public/menu/mitigasi.png';
 import tsunamiImage from '../public/menu/tsunami.png';
+import apiV1 from '@/lib/api';
+import Cookies from 'js-cookie';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -110,6 +112,7 @@ function Home() {
         return (
           <Container>
             {/* <ChatbotMenu />  */}
+            <button onClick={async () => {}}>KOCAK</button>
             <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
               <p
                 className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}

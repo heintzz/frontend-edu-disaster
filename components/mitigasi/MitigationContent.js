@@ -10,10 +10,10 @@ import { useSetRecoilState } from 'recoil';
 
 import BMKG from '../../public/lembaga/bmkg.webp';
 import BNPB from '../../public/lembaga/bnpb.png';
-import Mitigasi1 from '../../public/menu/mitigasi/orang-mitigasi-1.png';
-import Mitigasi2 from '../../public/menu/mitigasi/orang-mitigasi-2.png';
-import Mitigasi3 from '../../public/menu/mitigasi/orang-mitigasi-3.png';
-import Mitigasi4 from '../../public/menu/mitigasi/orang-mitigasi-4.png';
+import Mitigasi1 from '../../public/menu/mitigasi/orang-mitigasi-1.webp';
+import Mitigasi2 from '../../public/menu/mitigasi/orang-mitigasi-2.webp';
+import Mitigasi3 from '../../public/menu/mitigasi/orang-mitigasi-3.webp';
+import Mitigasi4 from '../../public/menu/mitigasi/orang-mitigasi-4.webp';
 
 import Link from 'next/link';
 import BackButton from '../button/BackButton';
@@ -170,13 +170,19 @@ export default function MitigationContent() {
                   )}
                 </div>
                 <div
-                  onClick={() => actionClickAddURLParams(5)}
+                  onClick={() => {
+                    actionClickAddURLParams(5);
+                    setShowMenu(false);
+                  }}
                   className="h-[50vh] bg-[#253333] rounded-xl grid place-content-center text-center px-5 cursor-pointer"
                 >
                   Jenis Mitigasi
                 </div>
                 <div
-                  onClick={() => actionClickAddURLParams(6)}
+                  onClick={() => {
+                    actionClickAddURLParams(6);
+                    setShowMenu(false);
+                  }}
                   className="h-[50vh] bg-[#253333] rounded-xl grid place-content-center text-center px-5 cursor-pointer"
                 >
                   Lembaga Kebencanaan
@@ -300,7 +306,7 @@ export default function MitigationContent() {
       case 5:
         return (
           <div>
-            <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 md:px-10">
+            <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 lg:px-10">
               <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl`}>
                 Jenis Mitigasi
               </p>

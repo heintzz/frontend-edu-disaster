@@ -1,8 +1,9 @@
 'use client';
-import { RecoilRoot } from 'recoil';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { RecoilRoot } from 'recoil';
 
 import './globals.css';
+import Cookies from 'js-cookie';
 
 export default function RootLayout({ children }) {
   return (
