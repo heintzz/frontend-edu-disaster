@@ -6,8 +6,15 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
-const NavbarGuru = () => {
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const NavbarGuru = ({ profile }) => {
+  const router = useRouter();
   const [isStatistikClicked, setIsStatistikClicked] = useState(false);
   const [profileImage, setProfileImage] = useState('profile.svg');
   const [error, setError] = useState('');
@@ -48,16 +55,16 @@ const NavbarGuru = () => {
     document.getElementById('fileInput').click();
   };
 
-  const router = useRouter();
-
   const handleLogout = () => {
-    Cookies.remove('access_token', { path: '/' });
-    // Cookies.remove('user_profile');
-    // router.push('/login');
+    Cookies.remove('access_token');
+    Cookies.remove('user_profile');
+    router.push('/login');
   };
 
   return (
-    <div className="w-1/5 h-screen bg-[#253333] flex flex-col items-center">
+    <div
+      className={`w-1/5 h-screen bg-[#253333] flex flex-col items-center ${jakartaSans.className}`}
+    >
       <div className="h-1/4 w-full flex flex-col items-center justify-center gap-6 border-b-[1px] border-[#BDBDBD]">
         <div className="relative">
           <img
@@ -77,7 +84,7 @@ const NavbarGuru = () => {
           />
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        <p className="font-kumbh font-semibold text-sm text-white">Emilia Rusdiana, S.Pd</p>
+        <p className="font-semibold text-sm text-white">{profile?.name}</p>
       </div>
       <div className="h-4/5 w-full flex flex-col items-center justify-between py-[4vh] px-[3vw]">
         <div className="w-full flex flex-col gap-6">
@@ -89,7 +96,7 @@ const NavbarGuru = () => {
           >
             <div className="flex gap-3 items-center">
               <FaHome size={16} color={'white'} />
-              <p className="font-kumbh font-semibold text-sm text-white">Kelas</p>
+              <p className="font-semibold text-sm text-white">Kelas</p>
             </div>
             {!isStatistikClicked && (
               <MdKeyboardArrowRight
@@ -106,7 +113,7 @@ const NavbarGuru = () => {
           >
             <div className="flex gap-3 items-center">
               <AiOutlineLineChart size={16} color={'white'} />
-              <p className="font-kumbh font-semibold text-sm text-white">Statistik</p>
+              <p className="font-semibold text-sm text-white">Statistik</p>
             </div>
             {isStatistikClicked && (
               <MdKeyboardArrowRight
@@ -117,7 +124,7 @@ const NavbarGuru = () => {
           </button>
         </div>
         <button className="px-8 py-4" onClick={handleLogout}>
-          <p className="font-kumbh font-semibold text-sm text-center text-white">Log out</p>
+          <p className="font-semibold text-sm text-center text-white">Log out</p>
         </button>
       </div>
     </div>

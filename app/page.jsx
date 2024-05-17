@@ -112,7 +112,6 @@ function Home() {
         return (
           <Container>
             {/* <ChatbotMenu />  */}
-            <button onClick={async () => {}}>KOCAK</button>
             <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
               <p
                 className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}

@@ -1,9 +1,14 @@
 'use client';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { RecoilRoot } from 'recoil';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
+import { RecoilRoot } from 'recoil';
 import './globals.css';
-import Cookies from 'js-cookie';
+
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -16,7 +21,9 @@ export default function RootLayout({ children }) {
       </head>
       <SpeedInsights />
       <RecoilRoot>
-        <body>{children}</body>
+        <body>
+          <div className={jakartaSans.className}>{children}</div>
+        </body>
       </RecoilRoot>
     </html>
   );

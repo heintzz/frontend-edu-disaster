@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Plus_Jakarta_Sans, Caesar_Dressing } from 'next/font/google';
+import { Caesar_Dressing } from 'next/font/google';
 
 import enums from '@/enums/enum';
 import { useState } from 'react';
@@ -10,7 +10,6 @@ import BackButton from '../button/BackButton';
 import ExploreMapButton from '../button/ExploreMapButton';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: '400' });
 
 export default function MateriErupsi({ handleBack }) {
   const [showImage, setShowImage] = useState(true);
@@ -39,9 +38,7 @@ export default function MateriErupsi({ handleBack }) {
       </div>
       <div className="flex flex-col gap-y-2 lg:gap-y-10 lg:-ml-10 pr-10">
         <p className={`${caesarDressing.className} lg:text-4xl`}>Proses Terjadinya Erupsi</p>
-        <div
-          className={`${plusJakarta.className} max-h-[50%] lg:max-h-[100%] overflow-y-auto text-[10px] md:text-xs lg:text-base`}
-        >
+        <div className="max-h-[50%] lg:max-h-[100%] overflow-y-auto text-[10px] md:text-xs lg:text-base">
           <p>
             Erupsi gunung berapi merupakan proses kompleks yang melibatkan interaksi berbagai
             lapisan bumi. Magma yang terkumpul di dapur magma, terletak di kerak bumi, bergerak ke

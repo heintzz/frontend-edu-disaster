@@ -1,7 +1,4 @@
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
-
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: '400' });
 
 export default function DisasterCard({ index, imageSrc, title, description }) {
   return (
@@ -17,7 +14,7 @@ export default function DisasterCard({ index, imageSrc, title, description }) {
         </div>
         <div className="h-[40%] w-full flex flex-col gap-y-1 relative z-[2] bg-black text-white rounded-b-3xl text-center lg:items-center lg:justify-center pt-3 px-4 lg:px-6 lg:py-2">
           <p className="font-otomanopee text-xs lg:text-2xl font-semibold">{title}</p>
-          <p className={`${plusJakarta.className} text-[8px] lg:text-base`}>{description}</p>
+          <p className="text-[8px] lg:text-base">{description}</p>
         </div>
       </div>
       <div className="h-full w-full bg-[#29ADB2] blur-sm lg:blur-md rounded-3xl absolute top-0 z-[2]"></div>

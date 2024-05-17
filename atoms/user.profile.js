@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 const userProfileAtom = atom({
   key: 'userProfileState',
-  default: '',
+  default: {},
 });
 
 export { userProfileAtom };

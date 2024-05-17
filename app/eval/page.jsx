@@ -1,16 +1,15 @@
 'use client';
 
-import { Caesar_Dressing, Plus_Jakarta_Sans } from 'next/font/google';
+import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 
 import questions from '@/lib/questions';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import arrowBack from '../../public/arrowBack.svg';
 import arrowNext from '../../public/arrowNext.svg';
-import { useRouter } from 'next/navigation';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400', '600'] });
 
 export default function EvalPage() {
   const router = useRouter();
@@ -76,7 +75,7 @@ export default function EvalPage() {
     <div className="w-[100dvw] h-[100dvh] py-[3dvh] lg:py-[2dvh] px-[5dvh] bg-[#253333] text-white">
       <div className="h-full flex flex-col gap-y-4 lg:gap-y-10 justify-between relative">
         <p className={`${caesarDressing.className} lg:text-5xl text-center`}>EVALUASI</p>
-        <div className={`${plusJakarta.className} bg-black rounded-[20px] h-full p-5 relative`}>
+        <div className="bg-black rounded-[20px] h-full p-5 relative">
           <button
             className="absolute right-5 bottom-5 bg-[#EF473E] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl"
             onClick={() => {}}

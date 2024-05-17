@@ -1,11 +1,8 @@
 'use client';
 
 import apiV1 from '@/lib/api';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400', '600'] });
 
 const LoginPage = () => {
   const router = useRouter();
@@ -17,6 +14,7 @@ const LoginPage = () => {
   };
 
   const loginUser = async () => {
+    setWaitingResponse(true);
     try {
       const res = await apiV1.post('/auth/login', loginData);
       console.log(res);
@@ -32,9 +30,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div
-      className={`w-screen h-screen bg-[#29ADB2] flex justify-between items-center px-[3vw] py-[7vh]  ${plusJakarta.className}`}
-    >
+    <div className="w-screen h-screen bg-[#29ADB2] flex justify-between items-center px-[3vw] py-[7vh]">
       <div className="flex justify-center items-center w-3/5">
         <p className="text-[100px] text-white">EduDisaster</p>
       </div>
@@ -59,6 +55,7 @@ const LoginPage = () => {
               type="email"
               placeholder="mail@abc.com"
               name="email"
+              value={loginData.email}
               onChange={handleValueChange}
             />
           </div>
@@ -69,6 +66,7 @@ const LoginPage = () => {
               type="password"
               placeholder="*********"
               name="password"
+              value={loginData.password}
               onChange={handleValueChange}
             />
             {/* <div className="flex items-center mt-2">

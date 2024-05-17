@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { activityState } from '@/atoms/user.activity';
 import enums from '@/enums/enum';
 
-import { Caesar_Dressing, Plus_Jakarta_Sans } from 'next/font/google';
+import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
@@ -20,10 +20,6 @@ import BackButton from '../button/BackButton';
 import NextButton from '../button/NextButton';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-});
 
 export default function MitigationContent() {
   const router = useRouter();
@@ -199,9 +195,7 @@ export default function MitigationContent() {
               <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl`}>
                 Mitigasi Tsunami
               </p>
-              <div
-                className={`${plusJakarta.className} text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto`}
-              >
+              <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
                   Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
                   terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
@@ -236,9 +230,7 @@ export default function MitigationContent() {
               <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl`}>
                 Mitigasi Gempa Bumi
               </p>
-              <div
-                className={`${plusJakarta.className} text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto`}
-              >
+              <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
                   Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
                   terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
@@ -273,9 +265,7 @@ export default function MitigationContent() {
               <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl`}>
                 Mitigasi Erupsi
               </p>
-              <div
-                className={`${plusJakarta.className} text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto`}
-              >
+              <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
                   Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
                   terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
@@ -310,9 +300,7 @@ export default function MitigationContent() {
               <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl`}>
                 Jenis Mitigasi
               </p>
-              <div
-                className={`${plusJakarta.className} text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto`}
-              >
+              <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <ol className="list-decimal mt-5 pl-5 flex flex-col gap-y-1 lg:gap-y-5">
                   <li>
                     <span className="font-bold">Mitigasi Struktural</span>
@@ -350,9 +338,7 @@ export default function MitigationContent() {
               >
                 Badan Nasional Penanggulangan Bencana (BNPB)
               </p>
-              <div
-                className={`${plusJakarta.className} grid grid-cols-2 justify-center items-start lg:items-center text-xs lg:text-base mt-5   lg:mt-10 `}
-              >
+              <div className="grid grid-cols-2 justify-center items-start lg:items-center text-xs lg:text-base mt-5   lg:mt-10 ">
                 <Image
                   src={BNPB}
                   alt="logo bnpb"
@@ -395,9 +381,7 @@ export default function MitigationContent() {
               >
                 Badan Meteorologi Klimatologi dan Geofisika (BMKG)
               </p>
-              <div
-                className={`${plusJakarta.className} grid grid-cols-2 justify-center items-start lg:items-center text-xs lg:text-base mt-5   lg:mt-10 `}
-              >
+              <div className="grid grid-cols-2 justify-center items-start lg:items-center text-xs lg:text-base mt-5   lg:mt-10 ">
                 <Image
                   src={BMKG}
                   alt="logo bmkg"

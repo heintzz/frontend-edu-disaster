@@ -58,15 +58,9 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  if (request.nextUrl.pathname === '/' && userProfile) {
-    if (userProfile.role === enums.ROLE.TEACHER) {
-      return NextResponse.redirect(new URL('/dashboard/kelas', request.url));
-    }
-  }
-
   return response;
 }
 
 export const config = {
-  matcher: ['/', '/login', '/register', '/dashboard', '/dashboard/kelas'],
+  matcher: ['/', '/login', '/register', '/dashboard', '/dashboard/kelas', '/dashboard/kelas/buat'],
 };

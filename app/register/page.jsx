@@ -3,10 +3,7 @@
 import enums from '@/enums/enum';
 import apiV1 from '@/lib/api';
 
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useState } from 'react';
-
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400', '600'] });
 
 const RegisterPage = () => {
   const [chosenRole, setChosenRole] = useState(null);
@@ -47,9 +44,7 @@ const RegisterPage = () => {
   ];
 
   return (
-    <div
-      className={`w-screen h-screen flex justify-between items-center px-[3vw] py-[7vh] bg-[#29ADB2] ${plusJakarta.className}`}
-    >
+    <div className="w-screen h-screen flex justify-between items-center px-[3vw] py-[7vh] bg-[#29ADB2]">
       <div className="flex justify-center items-center w-3/5">
         <p className="text-[100px] text-white">EduDisaster</p>
       </div>
