@@ -1,8 +1,13 @@
 import { atom } from 'recoil';
 
 const userProfileAtom = atom({
-  key: 'userProfileState',
-  default: {},
+  key: 'userProfile',
+  default: null,
 });
 
-export { userProfileAtom };
+const loadingUserAtom = atom({
+  key: 'loadingUser',
+  default: false,
+});
+
+export { userProfileAtom, loadingUserAtom };

@@ -22,20 +22,27 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
+import { userProfileAtom } from '@/atoms/user.profile';
+import Cookies from 'js-cookie';
 import eruptionImage from '../public/menu/erupsi.png';
 import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
 import mitigationImage from '../public/menu/mitigasi.png';
 import tsunamiImage from '../public/menu/tsunami.png';
-import apiV1 from '@/lib/api';
-import Cookies from 'js-cookie';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 const Container = ({ children }) => {
+  const [userProfile, setUserProfile] = useRecoilState(userProfileAtom);
+
+  useEffect(() => {
+    const profile = JSON.parse(Cookies.get('user_profile') || null);
+    setUserProfile(profile);
+  }, []);
+
   return (
     <div className="w-screen h-screen flex flex-col bg-[#253333]">
-      <Navigation />
+      <Navigation existedUser={userProfile} />
       {children}
     </div>
   );

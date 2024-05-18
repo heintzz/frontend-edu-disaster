@@ -1,12 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { FaHome } from 'react-icons/fa';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { AiOutlineLineChart } from 'react-icons/ai';
-import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { AiOutlineLineChart } from 'react-icons/ai';
+import { FaHome } from 'react-icons/fa';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+
+import avatar from '@/public/profile.svg';
 
 const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -15,8 +18,9 @@ const jakartaSans = Plus_Jakarta_Sans({
 
 const NavbarGuru = ({ profile }) => {
   const router = useRouter();
+
   const [isStatistikClicked, setIsStatistikClicked] = useState(false);
-  const [profileImage, setProfileImage] = useState('profile.svg');
+  const [profileImage, setProfileImage] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -67,8 +71,8 @@ const NavbarGuru = ({ profile }) => {
     >
       <div className="h-1/4 w-full flex flex-col items-center justify-center gap-6 border-b-[1px] border-[#BDBDBD]">
         <div className="relative">
-          <img
-            src={profileImage}
+          <Image
+            src={profileImage ? profileImage : avatar}
             alt="foto profil diri"
             width={66}
             height={66}
