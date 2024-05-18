@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function DisasterCard({ index, imageSrc, title, description }) {
+export default function DisasterCard({ index, isActive, imageSrc, title, description }) {
   return (
     <div className="relative h-[230px] lg:h-[480px] cursor-pointer">
       <div className="h-full bg-black flex flex-col rounded-3xl relative z-[3]">
@@ -17,7 +17,9 @@ export default function DisasterCard({ index, imageSrc, title, description }) {
           <p className="text-[8px] lg:text-base">{description}</p>
         </div>
       </div>
-      <div className="h-full w-full bg-[#29ADB2] blur-sm lg:blur-md rounded-3xl absolute top-0 z-[2]"></div>
+      {isActive && (
+        <div className="h-full w-full bg-[#29ADB2] blur-sm lg:blur-md rounded-3xl absolute top-0 z-[2]"></div>
+      )}
     </div>
   );
 }

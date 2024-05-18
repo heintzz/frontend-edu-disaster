@@ -19,7 +19,7 @@ import { createUrl } from '@/lib/utils';
 import { Caesar_Dressing } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useMemo } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { userProfileAtom } from '@/atoms/user.profile';
@@ -101,7 +101,9 @@ const SuspenseHome = () => {
 function Home() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const [activity, setActivity] = useRecoilState(activityState);
+  const [realIndex, setRealIndex] = useState(0);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -126,12 +128,20 @@ function Home() {
                 PILIH KARTU UNTUK MEMULAI
               </p>
               <div className="max-w-[600px] lg:max-w-[1080px]">
-                <Swiper slidesPerView={3} spaceBetween={30} loop={true} initialSlide={0}>
+                <Swiper
+                  slidesPerView={3}
+                  spaceBetween={30}
+                  loop={true}
+                  initialSlide={0}
+                  onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+                >
                   {activitiesMenu.map((activity, index) => {
                     const activitySearchParams = new URLSearchParams(searchParams.toString());
                     activitySearchParams.set('activity', activity.state);
                     activitySearchParams.set('index', 0);
                     const activityURL = createUrl(pathname, activitySearchParams);
+
+                    let realOrder = activity.order - 1;
 
                     return (
                       <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
@@ -143,6 +153,7 @@ function Home() {
                         >
                           <DisasterCard
                             index={activity.order}
+                            isActive={realIndex === realOrder}
                             imageSrc={activity.imageSrc}
                             title={activity.title}
                             description={activity.description}
@@ -175,7 +186,7 @@ function Home() {
       default:
         return <Container></Container>;
     }
-  }, [activity]);
+  }, [activity, realIndex]);
 
   return element;
 }
