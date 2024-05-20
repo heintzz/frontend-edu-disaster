@@ -8,22 +8,23 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import { activityState } from '@/atoms/user.activity';
+import { userProfileAtom } from '@/atoms/user.profile';
 import DisasterCard from '@/components/DisasterCard';
 import Modal from '@/components/Modal';
 import Navigation from '@/components/Navigation';
 import EruptionContent from '@/components/erupsi/EruptionContent';
+import EvaluationContent from '@/components/evaluasi/EvaluationContent';
 import MitigationContent from '@/components/mitigasi/MitigationContent';
+import TsunamiContent from '@/components/tsunami/TsunamiContent';
 import enums from '@/enums/enum';
 import { createUrl } from '@/lib/utils';
-
+import Cookies from 'js-cookie';
 import { Caesar_Dressing } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { userProfileAtom } from '@/atoms/user.profile';
-import Cookies from 'js-cookie';
 import eruptionImage from '../public/menu/erupsi.png';
 import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
@@ -104,6 +105,12 @@ function Home() {
 
   const [activity, setActivity] = useRecoilState(activityState);
   const [realIndex, setRealIndex] = useState(0);
+  const [evaluationStarted, setEvaluationStarted] = useState();
+
+  useEffect(() => {
+    const evalState = localStorage.getItem('is_evaluation_started') || null;
+    setEvaluationStarted(evalState);
+  }, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -113,7 +120,7 @@ function Home() {
     } else {
       setActivity(enums.ACTIVITY.IDLE);
     }
-  }, []);
+  }, [searchParams]);
 
   const element = useMemo(() => {
     switch (activity) {
@@ -147,9 +154,18 @@ function Home() {
                       <SwiperSlide className="py-7 px-2 lg:py-16" key={index}>
                         <Link
                           href={
-                            activity.state === enums.ACTIVITY.EVALUATION ? '/eval' : activityURL
+                            activity.state === enums.ACTIVITY.EVALUATION
+                              ? evaluationStarted
+                                ? '/eval'
+                                : activityURL
+                              : activityURL
                           }
-                          onClick={() => setActivity(activity.state)}
+                          onClick={() => {
+                            if (activity.state === enums.ACTIVITY.EVALUATION && evaluationStarted) {
+                              return;
+                            }
+                            setActivity(activity.state);
+                          }}
                         >
                           <DisasterCard
                             index={activity.order}
@@ -175,6 +191,14 @@ function Home() {
             </Modal>
           </Container>
         );
+      case enums.ACTIVITY.TSUNAMI:
+        return (
+          <Container>
+            <Modal>
+              <TsunamiContent />
+            </Modal>
+          </Container>
+        );
       case enums.ACTIVITY.MITIGATION:
         return (
           <Container>
@@ -183,10 +207,18 @@ function Home() {
             </Modal>
           </Container>
         );
+      case enums.ACTIVITY.EVALUATION:
+        return (
+          <Container>
+            <Modal>
+              <EvaluationContent />
+            </Modal>
+          </Container>
+        );
       default:
         return <Container></Container>;
     }
-  }, [activity, realIndex]);
+  }, [activity, realIndex, evaluationStarted]);
 
   return element;
 }

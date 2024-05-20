@@ -4,22 +4,28 @@ import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 
 import questions from '@/lib/questions';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import arrowBack from '../../public/arrowBack.svg';
 import arrowNext from '../../public/arrowNext.svg';
+import StudentServices from '@/services/student.services';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
 export default function EvalPage() {
-  const router = useRouter();
-  
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalFinishedOpen, setIsModalFinishedOpen] = useState(false);
 
   const activeQuestion = questions[currentIndex];
   const [currentAnswer, setCurrentAnswer] = useState(null);
+
+  // const getStudentEvaluation = async () => {
+  //   try {
+  //     const res = await StudentServices.getStudentEvaluation();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     const data = localStorage.getItem('edudisaster_eval');
@@ -120,7 +126,7 @@ export default function EvalPage() {
                 if (currentIndex > 0) {
                   setCurrentIndex((prev) => prev - 1);
                 } else {
-                  router.push('/');
+                  window.history.back();
                 }
               }}
             >

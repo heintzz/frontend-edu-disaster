@@ -64,10 +64,32 @@ const getStudentClass = async () => {
   });
 };
 
+const createEvaluation = async () => {
+  const res = await getStudentClass();
+  const classroom = res.data[0];
+
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, rejeect) => {
+    apiV1
+      .post(`/student/evaluations?class_id${classroom.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        rejeect(error);
+      });
+  });
+};
 const StudentServices = {
   getStudentClass,
   getStudentProgress,
   updateStudentProgress,
+  createEvaluation,
 };
 
 export default StudentServices;
