@@ -3,7 +3,7 @@
 import TeacherServices from '@/services/teacher.services';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { IoArrowBackOutline } from 'react-icons/io5';
 
 const modules = [
@@ -21,8 +21,15 @@ const modules = [
   { id: 12, title: 'Modul 12 - Evaluasi' },
 ];
 
-const HalamanProgressSiswa = ({ params }) => {
-  const { id } = params;
+const SuspenseHalamanProgressSiswa = ({ params }) => {
+  return (
+    <Suspense>
+      <HalamanProgressSiswa id={params.id} />
+    </Suspense>
+  );
+};
+
+const HalamanProgressSiswa = ({ id }) => {
   const router = useRouter();
   const [progress, setProgress] = useState([]);
   const completedIds = progress.map((p) => p.lesson_id);
@@ -88,4 +95,4 @@ const HalamanProgressSiswa = ({ params }) => {
   );
 };
 
-export default HalamanProgressSiswa;
+export default SuspenseHalamanProgressSiswa;
