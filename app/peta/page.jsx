@@ -6,7 +6,11 @@ import Image from 'next/image';
 import arrow from '../../public/arrowBack.svg';
 
 import Navigation from '@/components/Navigation';
+import enums from '@/enums/enum';
+import StudentServices from '@/services/student.services';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 const DynamicMap = dynamic(() => import('../../components/Map'), {
   ssr: false,
@@ -39,6 +43,23 @@ const BackButton = () => {
 };
 
 export default function HalamanPeta() {
+  const searchParams = useSearchParams();
+
+  const updateStudentProgress = async () => {
+    try {
+      await StudentServices.updateStudentProgress(enums.MODULES.ERUPTION, new Date());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const module = searchParams.get('bencana');
+    if (module) {
+      updateStudentProgress();
+    }
+  }, [searchParams]);
+
   return (
     <main>
       <Navigation />
