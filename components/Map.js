@@ -2,11 +2,14 @@
 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Plus_Jakarta_Sans } from 'next/font/google';
+import { useRef } from 'react';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
-import { useRef } from 'react';
 import '../styles/tooltip.css';
+
+const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], weight: '400' });
 
 const Map = () => {
   const indonesiaCoordinate = [-0.7893, 113.9213];
@@ -23,7 +26,7 @@ const Map = () => {
   L.TileLayer.prototype.options.minZoom = 6;
 
   return (
-    <div>
+    <div className={`${jakartaSans.className}`}>
       <MapContainer
         className="w-full h-[calc(100dvh-40px)]"
         center={indonesiaCoordinate}
@@ -50,7 +53,7 @@ const Map = () => {
                 role="button"
                 onClick={() => popupRef.current.handlePopupClose()}
               />
-              <div>
+              <div className={jakartaSans.className}>
                 <p className="font-semibold">Erupsi Gunung Merapi</p>
                 <p className="font-semibold">Sleman, D.I. Yogyakarta</p>
                 <div className="description mt-5">
@@ -73,7 +76,7 @@ const Map = () => {
                 role="button"
                 onClick={() => {}}
               />
-              <div>
+              <div className={jakartaSans.className}>
                 <p className="font-semibold">Erupsi Gunung Merapi</p>
                 <p className="font-semibold">Sleman, D.I. Yogyakarta</p>
                 <div className="description mt-5">
