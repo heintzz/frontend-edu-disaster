@@ -5,15 +5,15 @@ import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 import arrow from '../../public/arrowBack.svg';
 
+import { userProfileAtom } from '@/atoms/user.profile';
 import Navigation from '@/components/Navigation';
 import enums from '@/enums/enum';
 import StudentServices from '@/services/student.services';
+import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { userProfileAtom } from '@/atoms/user.profile';
-import Cookies from 'js-cookie';
 
 const DynamicMap = dynamic(() => import('../../components/Map'), {
   ssr: false,
@@ -45,7 +45,15 @@ const BackButton = () => {
   );
 };
 
-export default function HalamanPeta() {
+const SuspenseHalamanPeta = () => {
+  return (
+    <Suspense>
+      <HalamanPeta />
+    </Suspense>
+  );
+};
+
+function HalamanPeta() {
   const searchParams = useSearchParams();
   const [userProfile, setUserProfile] = useRecoilState(userProfileAtom);
 
@@ -80,3 +88,5 @@ export default function HalamanPeta() {
     </main>
   );
 }
+
+export default SuspenseHalamanPeta;

@@ -37,7 +37,7 @@ export default function MitigationContent() {
     } else {
       setActiveIndex(0);
     }
-  }, []);
+  }, [searchParams]);
 
   const handleNext = () => {
     setActiveIndex((prev) => prev + 1);
@@ -98,21 +98,25 @@ export default function MitigationContent() {
                 src={Mitigasi1}
                 alt="people helps each other"
                 className="absolute w-[60%] top-[9vh] -left-[1vw] lg:-left-[2vw]"
+                priority={true}
               />
               <Image
                 src={Mitigasi2}
                 alt="people helps each other"
                 className="absolute w-[60%] top-[9vh] left-[8vw] sm:left-[7vw] md:left-[5vw] lg:left-[6vw]"
+                priority={true}
               />
               <Image
                 src={Mitigasi3}
                 alt="people helps each other"
                 className="absolute w-[70%] -left-[10vw] sm:-left-[9vw] lg:-left-[11vw] -top-[2vh]"
+                priority={true}
               />
               <Image
                 src={Mitigasi4}
                 alt="people helps each other"
                 className="absolute w-[65%] -right-[10vw] sm:-right-[8vw] lg:-right-[10vw] -top-[2vh]"
+                priority={true}
               />
             </div>
             <BackButton back={handleBack} />

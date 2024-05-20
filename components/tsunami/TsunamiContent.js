@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import MateriErupsi from './MateriErupsi';
-import VideoErupsi from './VideoErupsi';
 import enums from '@/enums/enum';
 import StudentServices from '@/services/student.services';
+import { usePathname, useSearchParams } from 'next/navigation';
+import MateriTsunami from './MateriTsunami';
+import VideoTsunami from './VideoTsunami';
 
-export default function EruptionContent() {
-  const pathname = usePathname();
+export default function TsunamiContent() {
   const searchParams = useSearchParams();
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +19,7 @@ export default function EruptionContent() {
     } else {
       setActiveIndex(0);
     }
-  }, [searchParams, pathname]);
+  }, [searchParams]);
 
   useEffect(() => {
     if (activeIndex === 1) {
@@ -30,7 +29,7 @@ export default function EruptionContent() {
 
   const updateProgress = async () => {
     try {
-      await StudentServices.updateStudentProgress(enums.MODULES.ERUPTION);
+      await StudentServices.updateStudentProgress(enums.MODULES.TSUNAMI);
     } catch (error) {
       console.error(error);
     }
@@ -39,7 +38,7 @@ export default function EruptionContent() {
   const handleNext = () => {
     setActiveIndex((prev) => prev + 1);
     const params = new URLSearchParams(searchParams.toString());
-    params.set('activity', enums.ACTIVITY.ERUPTION);
+    params.set('activity', enums.ACTIVITY.TSUNAMI);
     params.set('index', activeIndex + 1);
 
     window.history.pushState({}, '', `?${params.toString()}`);
@@ -48,7 +47,7 @@ export default function EruptionContent() {
   const handleBack = () => {
     setActiveIndex((prev) => prev - 1);
     const params = new URLSearchParams(searchParams.toString());
-    params.set('activity', enums.ACTIVITY.ERUPTION);
+    params.set('activity', enums.ACTIVITY.TSUNAMI);
     params.set('index', activeIndex - 1);
 
     window.history.pushState({}, '', `?${params.toString()}`);
@@ -57,9 +56,9 @@ export default function EruptionContent() {
   const element = useMemo(() => {
     switch (activeIndex) {
       case 0:
-        return <VideoErupsi handleNext={handleNext} />;
+        return <VideoTsunami handleNext={handleNext} />;
       case 1:
-        return <MateriErupsi handleBack={handleBack} />;
+        return <MateriTsunami handleBack={handleBack} />;
       default:
         return null;
     }
