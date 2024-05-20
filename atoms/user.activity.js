@@ -1,8 +1,14 @@
-import { atom } from "recoil";
+import enums from '@/enums/enum';
+import { atom } from 'recoil';
 
 const activityState = atom({
   key: 'activityState',
-  default: 'init',
+  default: enums.ACTIVITY.INIT,
 });
 
-export { activityState };
+const evaluationAtom = atom({
+  key: 'evaluationAtom',
+  default: null,
+});
+
+export { activityState, evaluationAtom };

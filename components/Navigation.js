@@ -6,9 +6,7 @@ import { FaRegCircleUser } from 'react-icons/fa6';
 const Navigation = ({ existedUser }) => {
   return (
     <div
-      className={`w-full flex  ${
-        existedUser ? 'items-center justify-between' : 'justify-end'
-      }  px-5 py-2`}
+      className="w-full flex items-center justify-between px-5 py-2"
       style={{
         backgroundImage: 'linear-gradient(to right, #29ADB2, #2C2C2C)',
       }}
@@ -17,7 +15,11 @@ const Navigation = ({ existedUser }) => {
         <Link href={existedUser.role === enums.ROLE.TEACHER ? '/dashboard/kelas' : '/profil'}>
           <FaRegCircleUser color="white" className="w-6 h-6" />
         </Link>
-      ) : null}
+      ) : (
+        <Link href="/login" className="text-white rounded-lg text-md font-semibold ">
+          Login
+        </Link>
+      )}
       <BsChatRightDots color="white" className="w-6 h-6" />
     </div>
   );
