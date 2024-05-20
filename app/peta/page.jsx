@@ -11,6 +11,9 @@ import StudentServices from '@/services/student.services';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { userProfileAtom } from '@/atoms/user.profile';
+import Cookies from 'js-cookie';
 
 const DynamicMap = dynamic(() => import('../../components/Map'), {
   ssr: false,
@@ -44,25 +47,31 @@ const BackButton = () => {
 
 export default function HalamanPeta() {
   const searchParams = useSearchParams();
+  const [userProfile, setUserProfile] = useRecoilState(userProfileAtom);
 
-  const updateStudentProgress = async () => {
+  useEffect(() => {
+    const profile = JSON.parse(Cookies.get('user_profile') || null);
+    setUserProfile(profile);
+  }, []);
+
+  const updateStudentProgress = async (module) => {
     try {
-      await StudentServices.updateStudentProgress(enums.MODULES.ERUPTION, new Date());
+      await StudentServices.updateStudentProgress(enums.DISASTER_TO_MODULES[module]);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
     const module = searchParams.get('bencana');
     if (module) {
-      updateStudentProgress();
+      updateStudentProgress(module);
     }
   }, [searchParams]);
 
   return (
     <main>
-      <Navigation />
+      <Navigation existedUser={userProfile} />
       <DynamicMap />
       <Link href="/">
         <BackToHomeButton />

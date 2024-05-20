@@ -1,8 +1,9 @@
 'use client';
 
+import TeacherServices from '@/services/teacher.services';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoArrowBackOutline } from 'react-icons/io5';
 
 const modules = [
@@ -21,15 +22,26 @@ const modules = [
 ];
 
 const HalamanProgressSiswa = ({ params }) => {
+  const { id } = params;
   const router = useRouter();
-  const [checkedState, setCheckedState] = useState(modules.map(() => false));
+  const [progress, setProgress] = useState([]);
+  const completedIds = progress.map((p) => p.lesson_id);
+  const completed = progress.length;
 
-  const handleToggle = (index) => {
-    const updatedCheckedState = checkedState.map((item, idx) => (idx === index ? !item : item));
-    setCheckedState(updatedCheckedState);
+  const getStudentProgress = async () => {
+    try {
+      const res = await TeacherServices.getStudentProgress(id);
+      if (res.success) {
+        setProgress(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const completedModules = checkedState.filter(Boolean).length;
+  useEffect(() => {
+    getStudentProgress();
+  }, []);
 
   return (
     <div className="w-4/5 px-[5vh] py-[4vh] flex flex-col gap-8">
@@ -38,20 +50,20 @@ const HalamanProgressSiswa = ({ params }) => {
         onClick={() => router.push('/dashboard/kelas')}
       >
         <IoArrowBackOutline size={24} color="black" />
-        <button className="font-semibold text-xl">Progres Belajar User</button>
+        <button className="font-semibold text-xl">Progres Belajar</button>
       </div>
       <div className="w-full flex flex-col gap-4">
         <p>
           <span className="font-bold">
-            {completedModules}/{modules.length}
+            {completed}/{modules.length}&nbsp;
           </span>
           Modul Terselesaikan
         </p>
         <div className="w-full flex flex-col gap-2">
           {modules.map((module, index) => (
             <div key={module.id} className="flex gap-[13px] items-center">
-              <button onClick={() => handleToggle(index)}>
-                {checkedState[index] ? (
+              <button>
+                {completedIds.includes(module.id) ? (
                   <Image src="/checkedCheckbox.svg" width={24} height={24} alt="checkedCheckbox" />
                 ) : (
                   <Image src="/checkbox.svg" width={24} height={24} alt="checkbox" />

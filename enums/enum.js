@@ -24,9 +24,9 @@ const MODULES = {
 };
 
 const DISASTER_TO_MODULES = {
-  eruption: MODULES.ERUPTION,
-  earthquake: MODULES.EARTHQUAKE,
-  tsunami: MODULES.TSUNAMI,
+  eruption: MODULES.ERUPTIONMAP,
+  earthquake: MODULES.EARTHQUAKEMAP,
+  tsunami: MODULES.TSUNAMIMAP,
 };
 
 const ROLE = {

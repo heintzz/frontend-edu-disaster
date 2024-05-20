@@ -1,7 +1,7 @@
 import apiV1 from '@/lib/api';
 import { tokenServices } from './token.services';
 
-const updateStudentProgress = async (lessonId, date) => {
+const updateStudentProgress = async (lessonId) => {
   const token = tokenServices.getAccessToken();
 
   return new Promise((resolve, reject) => {
@@ -10,7 +10,6 @@ const updateStudentProgress = async (lessonId, date) => {
         '/student/progress',
         {
           lessonId,
-          date,
         },
         {
           headers: {

@@ -49,7 +49,7 @@ const HalamanDashboardKelas = () => {
           Authorization: `Bearer ${tokenServices.getAccessToken()}`,
         },
       });
-      const json = res.data;
+      const json = res.data;      
       if (json.success) {
         setClasses(json.data);
       }
