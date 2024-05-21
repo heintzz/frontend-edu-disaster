@@ -1,6 +1,31 @@
 import apiV1 from '@/lib/api';
 import { tokenServices } from './token.services';
 
+const joinClass = async (classCode) => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .post(
+        `/student/classes/${classCode}/join`,
+        {
+          classCode,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const updateStudentProgress = async (lessonId) => {
   const token = tokenServices.getAccessToken();
 
@@ -86,6 +111,7 @@ const createEvaluation = async () => {
   });
 };
 const StudentServices = {
+  joinClass,
   getStudentClass,
   getStudentProgress,
   updateStudentProgress,
