@@ -4,7 +4,7 @@ import { Caesar_Dressing } from 'next/font/google';
 
 import enums from '@/enums/enum';
 import { useState } from 'react';
-import dummyQR from '../../public/display/dummyQR.png';
+import qrErupsi from '../../public/qr/qr-erupsi.png';
 import eruptionImage from '../../public/display/erupsi.png';
 import BackButton from '../button/BackButton';
 import ExploreMapButton from '../button/ExploreMapButton';
@@ -26,7 +26,7 @@ export default function MateriErupsi({ handleBack }) {
           />
         ) : (
           <Image
-            src={dummyQR}
+            src={qrErupsi}
             alt="kode qr"
             className="w-[50%] lg:w-[70%] cursor-pointer transition-transform transform hover:scale-105"
             onClick={() => setShowImage(true)}
