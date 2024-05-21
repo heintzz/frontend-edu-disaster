@@ -5,11 +5,12 @@ export default function VideoErupsi({ handleNext }) {
     <>
       <iframe
         className="w-full h-full rounded-3xl"
-        src="https://www.youtube.com/embed/b4xlo58FgqY?si=3wo9VkfdUkYo3lvf"
+        src="https://www.youtube.com/embed/xgSp2FppSyA?si=CJWydfevCNEnbFgK"
         title="YouTube video player"
+        frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
       ></iframe>
       <NextButton next={handleNext} />
     </>
