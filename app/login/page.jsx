@@ -1,6 +1,7 @@
 'use client';
 
 import apiV1 from '@/lib/api';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -17,10 +18,15 @@ const LoginPage = () => {
     setWaitingResponse(true);
     try {
       const res = await apiV1.post('/auth/login', loginData);
-      console.log(res);
-      if (res) {
-        setLoginData({});
+      const json = res.data;
+
+      if (json.success) {
+        setLoginData({
+          email: '',
+          password: '',
+        });
         setWaitingResponse(false);
+        Cookies.set('access_token', json.accessToken, { expires: 1 });
         router.push('/');
       }
     } catch (error) {
