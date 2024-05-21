@@ -8,7 +8,6 @@ import { FaRandom } from 'react-icons/fa';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { MdDateRange } from 'react-icons/md';
 
-
 const HalamanBuatKelas = () => {
   const router = useRouter();
   const [classCode, setClassCode] = useState(null);
@@ -55,7 +54,7 @@ const HalamanBuatKelas = () => {
           },
         }
       );
-      console.log(res);
+
       router.push('/dashboard/kelas');
     } catch (error) {
       console.error(error);

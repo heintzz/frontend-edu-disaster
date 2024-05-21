@@ -110,12 +110,33 @@ const createEvaluation = async () => {
       });
   });
 };
+
+const submitAnswers = async (evaluationId) => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .post(`/student/evaluations/${evaluationId}/answers/finish`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const StudentServices = {
   joinClass,
   getStudentClass,
   getStudentProgress,
   updateStudentProgress,
   createEvaluation,
+  submitAnswers,
 };
 
 export default StudentServices;

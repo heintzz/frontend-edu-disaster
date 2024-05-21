@@ -3,17 +3,18 @@
 import { evaluationAtom } from '@/atoms/user.activity';
 import apiV1 from '@/lib/api';
 import { tokenServices } from '@/services/token.services';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
-const jakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-});
+// answers: {
+//   data: Array(2);
+// }
+// id: 1;
+// is_completed: false;
+// score: null;
 
-export default function EvalLayout({ children }) {
-  const [evaluation, setEvaluation] = useRecoilState(evaluationAtom);
+export default function EvaluationLayout({ children }) {
+  const setEvaluation = useSetRecoilState(evaluationAtom);
 
   const fetchUserEvaluations = async () => {
     try {
@@ -23,17 +24,20 @@ export default function EvalLayout({ children }) {
         },
       });
       const json = res.data;
-      console.log(json);
+      if (json.success) {
+        setEvaluation(json.data[0]);
+      }
     } catch (error) {
       console.log(error);
+      setEvaluation(null);
     }
   };
 
   useEffect(() => {
-    const lastEvaluation = localStorage.getItem('edudisaster_eval');
-    if (lastEvaluation) {
-      setEvaluation(JSON.parse(lastEvaluation));
-    }
+    // const lastEvaluation = localStorage.getItem('edudisaster_eval');
+    // if (lastEvaluation) {
+    //   setEvaluation(JSON.parse(lastEvaluation));
+    // }
     fetchUserEvaluations();
   }, []);
 

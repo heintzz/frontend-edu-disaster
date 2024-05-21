@@ -18,12 +18,17 @@ export default function EvaluationContent() {
   const createEvaluation = async () => {
     try {
       const res = await StudentServices.createEvaluation();
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
-    router.replace('/eval');
-    localStorage.setItem('is_evaluation_started', true);
+    router.replace('/evaluasi');
+    localStorage.setItem(
+      'edudisaster_eval',
+      JSON.stringify({
+        answers: [],
+        is_completed: false,
+      })
+    );
   };
 
   const handleBack = () => {

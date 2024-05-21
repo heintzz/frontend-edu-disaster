@@ -108,7 +108,7 @@ function Home() {
   const [evaluationStarted, setEvaluationStarted] = useState();
 
   useEffect(() => {
-    const evalState = localStorage.getItem('is_evaluation_started') || null;
+    const evalState = localStorage.getItem('edudisaster_eval') || null;
     setEvaluationStarted(evalState);
   }, []);
 
@@ -156,7 +156,7 @@ function Home() {
                           href={
                             activity.state === enums.ACTIVITY.EVALUATION
                               ? evaluationStarted
-                                ? '/eval'
+                                ? '/evaluasi'
                                 : activityURL
                               : activityURL
                           }
