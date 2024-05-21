@@ -2,10 +2,11 @@
 
 import enums from '@/enums/enum';
 import apiV1 from '@/lib/api';
-
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const RegisterPage = () => {
+  const router = useRouter();
   const [chosenRole, setChosenRole] = useState(null);
   const [signupData, setSignupData] = useState({});
 
@@ -22,9 +23,15 @@ const RegisterPage = () => {
     try {
       const res = await apiV1.post('/auth/signup', data);
       if (res) {
-        setSignupData({});
+        setSignupData({
+          name: '',
+          institutionCode: '',
+          email: '',
+          password: '',
+        });
         setChosenRole(null);
         alert('Registrasi berhasil');
+        router.push('/login');
       }
     } catch (error) {
       alert(error.response.data.message);
