@@ -174,14 +174,9 @@ export default function HalamanEvaluasi() {
             <div className="bg-black rounded-[20px] h-full p-5 lg:p-10 relative">
               <button
                 className="absolute right-5 bottom-5 bg-[#EF473E] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl"
-                onClick={() => {}}
+                onClick={() => setIsModalFinishedOpen(true)}
               >
-                <span
-                  className={caesarDressing.className}
-                  onClick={() => setIsModalFinishedOpen(true)}
-                >
-                  Selesai
-                </span>
+                <span className={caesarDressing.className}>Selesai</span>
               </button>
               <p className="text-sm lg:text-xl font-semibold">Soal no. {currentIndex + 1}</p>
               <p className="text-sm my-3 lg:text-base lg:my-10">{activeQuestion.question}</p>
