@@ -51,7 +51,7 @@ const HalamanProgressSiswa = ({ id }) => {
   }, []);
 
   return (
-    <div className="w-4/5 px-[5vh] py-[4vh] flex flex-col gap-8">
+    <div className="w-4/5 ml-[20%] px-[5vh] py-[4vh] flex flex-col gap-8">
       <div
         className="flex gap-4 items-center cursor-pointer"
         onClick={() => router.push('/dashboard/kelas')}
@@ -69,13 +69,13 @@ const HalamanProgressSiswa = ({ id }) => {
         <div className="w-full flex flex-col gap-2">
           {modules.map((module, index) => (
             <div key={module.id} className="flex gap-[13px] items-center">
-              <button>
+              <div>
                 {completedIds.includes(module.id) ? (
                   <Image src="/checkedCheckbox.svg" width={24} height={24} alt="checkedCheckbox" />
                 ) : (
                   <Image src="/checkbox.svg" width={24} height={24} alt="checkbox" />
                 )}
-              </button>
+              </div>
               <p>{module.title}</p>
             </div>
           ))}

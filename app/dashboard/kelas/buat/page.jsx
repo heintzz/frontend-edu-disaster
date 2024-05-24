@@ -62,7 +62,7 @@ const HalamanBuatKelas = () => {
   };
 
   return (
-    <div className="w-4/5 px-[5vh] py-[4vh] flex flex-col justify-between">
+    <div className="w-4/5 ml-[20%] px-[5vh] py-[4vh] flex flex-col justify-between">
       <div className="flex flex-col gap-12">
         <div
           className="flex gap-4 items-center cursor-pointer"

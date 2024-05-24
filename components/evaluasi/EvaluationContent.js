@@ -1,11 +1,11 @@
 import StudentServices from '@/services/student.services';
-
 import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 import OrangEvaluasi from '../../public/menu/orang_evaluasi.png';
 import BackButton from '../button/BackButton';
-import NextButton from '../button/NextButton';
 
 const caesarDressing = Caesar_Dressing({
   subsets: ['latin'],
@@ -14,12 +14,33 @@ const caesarDressing = Caesar_Dressing({
 
 export default function EvaluationContent() {
   const router = useRouter();
+  const [isLoadingCreate, setIsLoadingCreate] = useState(false);
+
+  const [classroom, setClassroom] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await StudentServices.getStudentClass();
+        if (res.success) {
+          setClassroom(res.data[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const createEvaluation = async () => {
+    setIsLoadingCreate(true);
     try {
-      const res = await StudentServices.createEvaluation();
+      const res = await StudentServices.createEvaluation(classroom && classroom.id);
+      if (res.success) {
+        setIsLoadingCreate(false);
+      }
     } catch (error) {
       console.log(error);
+      setIsLoadingCreate(false);
     }
     router.replace('/evaluasi');
     localStorage.setItem(
@@ -33,10 +54,6 @@ export default function EvaluationContent() {
 
   const handleBack = () => {
     router.back();
-  };
-
-  const handleNext = () => {
-    createEvaluation();
   };
 
   return (
@@ -80,7 +97,39 @@ export default function EvaluationContent() {
         </div>
       </div>
       <BackButton back={handleBack} />
-      <NextButton next={handleNext} title="Mulai" />
+      <button
+        className={`absolute bottom-3 lg:bottom-9 right-4 ${
+          caesarDressing.className
+        } flex items-center gap-x-2 bg-[#29ADB2] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl ${
+          isLoadingCreate ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+        onClick={createEvaluation}
+        disabled={isLoadingCreate}
+      >
+        {isLoadingCreate && (
+          <svg
+            className="animate-spin -ml-1 h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        )}
+        Mulai
+      </button>
     </div>
   );
 }

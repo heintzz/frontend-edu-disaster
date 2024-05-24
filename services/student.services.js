@@ -89,19 +89,20 @@ const getStudentClass = async () => {
   });
 };
 
-const createEvaluation = async () => {
-  const res = await getStudentClass();
-  const classroom = res.data[0];
-
+const createEvaluation = async (id) => {
   const token = tokenServices.getAccessToken();
 
   return new Promise((resolve, rejeect) => {
     apiV1
-      .post(`/student/evaluations?class_id${classroom.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `/student/evaluations?class_id=${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         resolve(res.data);
       })
@@ -111,16 +112,22 @@ const createEvaluation = async () => {
   });
 };
 
-const submitAnswers = async (evaluationId) => {
+const submitAnswers = async (answers) => {
   const token = tokenServices.getAccessToken();
 
   return new Promise((resolve, reject) => {
     apiV1
-      .post(`/student/evaluations/${evaluationId}/answers/finish`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .post(
+        `/student/evaluations/answers/finish`,
+        {
+          data: answers,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         resolve(res.data);
       })

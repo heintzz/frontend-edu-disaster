@@ -50,7 +50,7 @@ export default function HalamanEvaluasi() {
     if (evaluation) {
       setIsLoadingSubmit(true);
       try {
-        const res = await StudentServices.submitAnswers();
+        const res = await StudentServices.submitAnswers(answeredQuestions);
         console.log(res);
         setIsLoadingSubmit(false);
         setEvaluationCompleted(true);
@@ -73,14 +73,15 @@ export default function HalamanEvaluasi() {
 
   useEffect(() => {
     if (evaluation) {
+      console.log(evaluation);
       localStorage.setItem(
         'edudisaster_eval',
         JSON.stringify({
-          answers: evaluation.answers.data,
+          answers: evaluation.answers.data.answers,
           is_completed: evaluation.is_completed,
         })
       );
-      setAnsweredQuestions(evaluation.answers.data);
+      setAnsweredQuestions(evaluation.answers.data.answers);
       setEvaluationCompleted(evaluation.is_completed);
     } else {
       const data = localStorage.getItem('edudisaster_eval');

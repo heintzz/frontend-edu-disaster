@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }) {
   }, []);
 
   return (
-    <div className={`w-screen h-screen flex ${jakartaSans.className}`}>
+    <div className={`w-screen h-screen overflow-x-hidden flex ${jakartaSans.className}`}>
       <NavbarGuru profile={userProfile} />
       {children}
     </div>

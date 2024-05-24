@@ -49,7 +49,7 @@ const HalamanDashboardKelas = () => {
           Authorization: `Bearer ${tokenServices.getAccessToken()}`,
         },
       });
-      const json = res.data;      
+      const json = res.data;
       if (json.success) {
         setClasses(json.data);
       }
@@ -109,14 +109,14 @@ const HalamanDashboardKelas = () => {
   };
 
   const headers = [
-    { text: 'Name', width: '1/4' },
-    { text: 'Email', width: '1/2' },
-    { text: 'Aksi', width: '1/4' },
+    { text: 'Name', width: '[40%]' },
+    { text: 'Email', width: '[40%]' },
+    { text: 'Aksi', width: '[20%]' },
   ];
 
   if (userProfile) {
     return userProfile?.is_verified ? (
-      <div className="w-4/5 px-[5vh] py-[4vh] flex flex-col gap-12">
+      <div className="w-4/5 ml-[20%] px-[5vh] pt-[4vh] flex flex-col gap-12">
         <button className="rounded px-[8px] py-[10px] w-fit bg-[#29ADB2]" onClick={handleBuatKelas}>
           <p className="font-semibold text-sm text-center text-white">Buat Kelas</p>
         </button>
@@ -196,7 +196,7 @@ const HalamanDashboardKelas = () => {
               </div>
             ))}
           </div>
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col mb-[4vh]">
             {students.map((student, index) => (
               <div
                 key={index}
@@ -204,14 +204,13 @@ const HalamanDashboardKelas = () => {
                   index % 2 === 0 ? 'bg-white' : 'bg-[#EBF6FF80]'
                 }`}
               >
-                <div className="w-1/4 flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-slate-500" />
+                <div className="w-[40%] flex items-center gap-4">
                   <p className="text-sm font-semibold text-[#424242]">{student.name}</p>
                 </div>
-                <div className="w-1/2 flex items-center">
+                <div className="w-[40%] flex items-center">
                   <p className="text-sm font-semibold text-[#424242]">{student.email}</p>
                 </div>
-                <div className="w-1/4 flex items-center gap-2">
+                <div className="w-[20%] flex items-center gap-2">
                   {['progressIcon', 'resultIcon', 'trashIcon'].map((icon, iconIndex) => (
                     <Image
                       key={iconIndex}

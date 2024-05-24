@@ -67,7 +67,7 @@ const NavbarGuru = ({ profile }) => {
 
   return (
     <div
-      className={`w-1/5 h-screen bg-[#253333] flex flex-col items-center ${jakartaSans.className}`}
+      className={`w-1/5 fixed h-screen bg-[#253333] flex flex-col items-center ${jakartaSans.className}`}
     >
       <div className="h-1/4 w-full flex flex-col items-center justify-center gap-6 border-b-[1px] border-[#BDBDBD]">
         <div className="relative">
