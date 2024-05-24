@@ -51,9 +51,18 @@ export default function HalamanEvaluasi() {
       setIsLoadingSubmit(true);
       try {
         const res = await StudentServices.submitAnswers(answeredQuestions);
-        console.log(res);
-        setIsLoadingSubmit(false);
-        setEvaluationCompleted(true);
+        if (res.success) {
+          localStorage.setItem(
+            'edudisaster_eval',
+            JSON.stringify({
+              answers: answeredQuestions,
+              is_completed: true,
+              score: res.data.score,
+            })
+          );
+          setIsLoadingSubmit(false);
+          setEvaluationCompleted(true);
+        }
       } catch (error) {
         console.log(error);
         setIsLoadingSubmit(false);
@@ -73,15 +82,15 @@ export default function HalamanEvaluasi() {
 
   useEffect(() => {
     if (evaluation) {
-      console.log(evaluation);
       localStorage.setItem(
         'edudisaster_eval',
         JSON.stringify({
-          answers: evaluation.answers.data.answers,
+          answers: evaluation.answers.data,
           is_completed: evaluation.is_completed,
+          score: evaluation.score,
         })
       );
-      setAnsweredQuestions(evaluation.answers.data.answers);
+      setAnsweredQuestions(evaluation.answers.data);
       setEvaluationCompleted(evaluation.is_completed);
     } else {
       const data = localStorage.getItem('edudisaster_eval');
@@ -100,6 +109,8 @@ export default function HalamanEvaluasi() {
     } else {
       setCurrentAnswer(currentAnswer?.answer);
     }
+
+    evaluation && saveAnswer(answeredQuestions);
   }, [currentIndex, answeredQuestions]);
 
   const saveAnswer = async (newAnswers) => {
@@ -138,7 +149,6 @@ export default function HalamanEvaluasi() {
         answers: updatedQuestions,
       };
 
-      evaluation && saveAnswer(updatedQuestions);
       localStorage.setItem('edudisaster_eval', JSON.stringify(dataToStore));
     } else {
       const updatedQuestions = [

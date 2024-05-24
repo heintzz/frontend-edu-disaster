@@ -9,6 +9,18 @@
       "database": "edu-disaster",
       "username": "postgres",
       "password": ""
+    },
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "driver": "PostgreSQL",
+      "name": "gatau yh",
+      "connectString": "postgres://default:im5gkxFcdbY7@ep-jolly-tree-a1eui23t-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
     }
   ]
 }
