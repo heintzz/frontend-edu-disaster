@@ -29,10 +29,12 @@ const NavbarGuru = ({ profile }) => {
 
   const handleStatistikClick = () => {
     setIsStatistikClicked(true);
+    router.push('/dashboard/statistik');
   };
 
   const handleKelasClick = () => {
     setIsStatistikClicked(false);
+    router.push('/dashboard/kelas');
   };
 
   const handleImageChange = (e) => {

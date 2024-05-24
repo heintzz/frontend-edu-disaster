@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const RegisterPage = () => {
   const router = useRouter();
-  const [chosenRole, setChosenRole] = useState(null);
+  const [chosenRole, setChosenRole] = useState(enums.ROLE.STUDENT);
   const [signupData, setSignupData] = useState({});
 
   const handleButtonClick = (role) => {
@@ -29,7 +29,7 @@ const RegisterPage = () => {
           email: '',
           password: '',
         });
-        setChosenRole(null);
+        setChosenRole(enums.ROLE.STUDENT);
         alert('Registrasi berhasil');
         router.push('/login');
       }

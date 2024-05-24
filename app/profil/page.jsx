@@ -105,6 +105,7 @@ const ProfilSiswa = () => {
   const handleUserLogout = () => {
     Cookies.remove('access_token');
     Cookies.remove('user_profile');
+    localStorage.removeItem('edudisaster_eval');
     router.push('/');
   };
 
