@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 
 import { RecoilRoot } from 'recoil';
 import './globals.css';
+import { Toaster } from 'react-hot-toast';
 
 const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <SpeedInsights />
       <RecoilRoot>
         <body>
+          <Toaster />
           <div className={jakartaSans.className}>{children}</div>
         </body>
       </RecoilRoot>

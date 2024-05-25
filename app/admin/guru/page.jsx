@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { MdSearch } from 'react-icons/md';
 
 const headers = [
@@ -16,10 +17,44 @@ const headers = [
   { text: 'Aksi', width: '1/6' },
 ];
 
+const ModalDeleteConfirmation = ({ isOpen, onClose, onDelete }) => {
+  return (
+    <div
+      className={`fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center ${
+        isOpen ? '' : 'hidden'
+      }`}
+    >
+      <div className="w-[400px] bg-white rounded-lg p-6 flex flex-col gap-4">
+        <p className="font-semibold text-lg text-[#424242]">Hapus Guru</p>
+        <p className="text-sm text-[#424242]">
+          Apakah Anda yakin ingin menghapus guru ini? Tindakan ini tidak dapat dibatalkan.
+        </p>
+        <div className="w-full flex gap-4">
+          <button
+            className="w-full py-2 rounded-lg border border-[#29ADB2] text-[#29ADB2] font-semibold"
+            onClick={onClose}
+          >
+            Batal
+          </button>
+          <button
+            className="w-full py-2 rounded-lg bg-[#29ADB2] text-white font-semibold"
+            onClick={onDelete}
+          >
+            Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HalamanDashboardDaftarGuru = () => {
   const router = useRouter();
   const [teacherData, setTeacherData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [teacherId, setTeacherId] = useState('');
+  const [triggerDelete, setTriggerDelete] = useState(false);
 
   const fetchTeacherData = async () => {
     try {
@@ -34,20 +69,43 @@ const HalamanDashboardDaftarGuru = () => {
     }
   };
 
+  const deleteTeacher = async () => {
+    try {
+      const response = await AdminServices.deleteTeacher(teacherId);
+      if (response.success) {
+        toast.success('Guru berhasil dihapus');
+        setTriggerDelete(!triggerDelete);
+        setOpenModal(false);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error);
+      toast.error('Gagal menghapus guru');
+    }
+  };
+
   useEffect(() => {
     fetchTeacherData();
-  }, []);
+  }, [triggerDelete]);
 
   const handleTambahGuru = () => {
     router.push('/admin/guru/tambah');
   };
 
   const handleEditGuru = (teacherId) => {
-    router.push(`/admin/guru/edit/${teacherId}`);
+    router.push(`/admin/guru/${teacherId}`);
   };
 
   return (
     <div className="w-4/5 ml-[20%]  px-[5vh] py-[4vh] flex flex-col gap-12">
+      <ModalDeleteConfirmation
+        isOpen={openModal}
+        onClose={() => {
+          setOpenModal(false);
+          setTeacherId('');
+        }}
+        onDelete={deleteTeacher}
+      />
       <button className="rounded px-[12px] py-[10px] w-fit bg-[#29ADB2]" onClick={handleTambahGuru}>
         <p className="font-semibold text-sm text-center text-white">Tambah Guru</p>
       </button>
@@ -112,6 +170,10 @@ const HalamanDashboardDaftarGuru = () => {
                       width={24}
                       height={24}
                       className="cursor-pointer"
+                      onClick={() => {
+                        setOpenModal(true);
+                        setTeacherId(teacher.id);
+                      }}
                     />
                   </div>
                 </div>

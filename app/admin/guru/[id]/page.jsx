@@ -1,12 +1,12 @@
 'use client';
 
 import AdminServices from '@/services/admin.services';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { IoArrowBackOutline } from 'react-icons/io5';
 import { FaPlus } from 'react-icons/fa6';
+import { IoArrowBackOutline } from 'react-icons/io5';
 
 const ClassDropdown = ({ classes, onAddClass }) => {
   const [selectedClass, setSelectedClass] = useState(classes[0]);
@@ -108,15 +108,15 @@ const InputField = ({ label, type, name, placeholder, value, handleValueChange }
 
 const HalamanEditGuru = ({ params }) => {
   const router = useRouter();
+
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [classList, setClassList] = useState([]);
 
   const [inputValue, setInputValue] = useState({
     name: userData?.name || '',
     email: userData?.email || '',
   });
-
-  const [classList, setClassList] = useState([]);
 
   const fetchUserData = async () => {
     try {
@@ -135,10 +135,24 @@ const HalamanEditGuru = ({ params }) => {
     }
   };
 
+  const verifyTeacherAccount = async () => {
+    try {
+      const response = await AdminServices.verifyTeacherAccount(params.id);
+      if (response.success) {
+        toast.success('Akun guru berhasil diverifikasi');
+        router.push('/admin/guru');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Gagal memverifikasi akun guru');
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
   }, []);
 
+  // NOTE: aku lupa ini mau dipake buat apa
   const addClass = (newClass) => {
     if (!classList.includes(newClass)) {
       setClassList([...classList, newClass]);
@@ -163,7 +177,7 @@ const HalamanEditGuru = ({ params }) => {
           onClick={() => router.push('/admin/guru')}
         >
           <IoArrowBackOutline size={24} color="black" />
-          <button className="font-semibold text-xl">Edit Guru</button>
+          <button className="font-semibold text-xl">Detail Guru</button>
         </div>
         <div className="w-1/2 flex flex-col gap-6">
           <InputField
@@ -182,16 +196,25 @@ const HalamanEditGuru = ({ params }) => {
             handleValueChange={(e) => setInputValue({ ...inputValue, email: e.target.value })}
             placeholder="emilia.rusdiana@sch.ac.id"
           />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col font-medium gap-2">
             Daftar Kelas
+            {userData.classes && userData.classes.length > 0 ? (
+              <ClassList classList={userData.classes || []} onRemoveClass={removeClass} />
+            ) : (
+              <p>Belum mendaftarkan kelas</p>
+            )}
             {/* <ClassDropdown classes={classes} onAddClass={addClass} /> */}
-            <ClassList classList={userData.classes || []} onRemoveClass={removeClass} />
           </div>
         </div>
       </div>
-      <button className="w-1/12 rounded px-[8px] py-[10px] bg-[#29ADB2] font-semibold text-sm text-center text-white">
-        Simpan
-      </button>
+      {!userData.is_verified && (
+        <button
+          onClick={verifyTeacherAccount}
+          className="w-fit rounded px-[8px] py-[10px] bg-[#29ADB2] font-semibold text-sm text-center text-white"
+        >
+          Verifikasi
+        </button>
+      )}
     </div>
   );
 };

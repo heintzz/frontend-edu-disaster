@@ -4,6 +4,7 @@ import apiV1 from '@/lib/api';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const LoginPage = () => {
         router.push('/');
       }
     } catch (error) {
-      alert(error.response?.data?.message || error);
+      toast.error(error.response?.data?.message || error);
       setWaitingResponse(false);
     }
   };

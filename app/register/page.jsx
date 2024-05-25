@@ -34,7 +34,7 @@ const RegisterPage = () => {
         router.push('/login');
       }
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response?.data?.message || error);
       console.error(error);
     }
   };

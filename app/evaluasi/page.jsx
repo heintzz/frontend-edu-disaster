@@ -126,7 +126,6 @@ export default function HalamanEvaluasi() {
           },
         }
       );
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

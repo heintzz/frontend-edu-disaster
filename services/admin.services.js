@@ -55,10 +55,74 @@ const getUserData = async (id) => {
   });
 };
 
+const createTeacherAccount = async (data) => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .post('/admin/users', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+const verifyTeacherAccount = async (id) => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .put(
+        `/admin/users/${id}/verify`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+const deleteTeacher = async (id) => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .delete(`/admin/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const AdminServices = {
   getStudentList,
   getTeachersList,
   getUserData,
+  createTeacherAccount,
+  verifyTeacherAccount,
+  deleteTeacher,
 };
 
 export default AdminServices;
