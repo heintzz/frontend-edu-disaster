@@ -3,8 +3,8 @@
 import Cookies from 'js-cookie';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { FaHome } from 'react-icons/fa';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -18,14 +18,11 @@ const jakartaSans = Plus_Jakarta_Sans({
 
 const NavbarGuru = ({ profile }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [isStatistikClicked, setIsStatistikClicked] = useState(false);
+  const [isStatistikClicked, setIsStatistikClicked] = useState(pathname.includes('/statistik'));
   const [profileImage, setProfileImage] = useState(null);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    setIsStatistikClicked(false);
-  }, []);
 
   const handleStatistikClick = () => {
     setIsStatistikClicked(true);

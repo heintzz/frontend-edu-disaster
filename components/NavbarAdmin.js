@@ -3,8 +3,8 @@
 import Cookies from 'js-cookie';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import avatar from '@/public/profile.svg';
@@ -16,14 +16,11 @@ const jakartaSans = Plus_Jakarta_Sans({
 
 const NavbarAdmin = ({ profile }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [isSiswaClicked, setIsSiswaClicked] = useState(false);
+  const [isSiswaClicked, setIsSiswaClicked] = useState(pathname.includes('/siswa'));
   const [profileImage, setProfileImage] = useState(null);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    setIsSiswaClicked(false);
-  }, []);
 
   const handleSiswaClick = () => {
     setIsSiswaClicked(true);

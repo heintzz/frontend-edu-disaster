@@ -1,5 +1,6 @@
 'use client';
 
+import { ModalDeleteConfirmation } from '@/components/ModalDelete';
 import SkeletonTable from '@/components/skeleton/SkeletonTable';
 import AdminServices from '@/services/admin.services';
 import Image from 'next/image';
@@ -16,37 +17,6 @@ const headers = [
   { text: 'Status', width: '1/6' },
   { text: 'Aksi', width: '1/6' },
 ];
-
-const ModalDeleteConfirmation = ({ isOpen, onClose, onDelete }) => {
-  return (
-    <div
-      className={`fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center ${
-        isOpen ? '' : 'hidden'
-      }`}
-    >
-      <div className="w-[400px] bg-white rounded-lg p-6 flex flex-col gap-4">
-        <p className="font-semibold text-lg text-[#424242]">Hapus Guru</p>
-        <p className="text-sm text-[#424242]">
-          Apakah Anda yakin ingin menghapus guru ini? Tindakan ini tidak dapat dibatalkan.
-        </p>
-        <div className="w-full flex gap-4">
-          <button
-            className="w-full py-2 rounded-lg border border-[#29ADB2] text-[#29ADB2] font-semibold"
-            onClick={onClose}
-          >
-            Batal
-          </button>
-          <button
-            className="w-full py-2 rounded-lg bg-[#29ADB2] text-white font-semibold"
-            onClick={onDelete}
-          >
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const HalamanDashboardDaftarGuru = () => {
   const router = useRouter();
@@ -71,7 +41,7 @@ const HalamanDashboardDaftarGuru = () => {
 
   const deleteTeacher = async () => {
     try {
-      const response = await AdminServices.deleteTeacher(teacherId);
+      const response = await AdminServices.deleteUser(teacherId);
       if (response.success) {
         toast.success('Guru berhasil dihapus');
         setTriggerDelete(!triggerDelete);
@@ -105,6 +75,7 @@ const HalamanDashboardDaftarGuru = () => {
           setTeacherId('');
         }}
         onDelete={deleteTeacher}
+        role="Guru"
       />
       <button className="rounded px-[12px] py-[10px] w-fit bg-[#29ADB2]" onClick={handleTambahGuru}>
         <p className="font-semibold text-sm text-center text-white">Tambah Guru</p>

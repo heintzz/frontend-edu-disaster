@@ -97,7 +97,7 @@ const verifyTeacherAccount = async (id) => {
   });
 };
 
-const deleteTeacher = async (id) => {
+const deleteUser = async (id) => {
   const token = tokenServices.getAccessToken();
 
   return new Promise((resolve, reject) => {
@@ -122,7 +122,7 @@ const AdminServices = {
   getUserData,
   createTeacherAccount,
   verifyTeacherAccount,
-  deleteTeacher,
+  deleteUser,
 };
 
 export default AdminServices;

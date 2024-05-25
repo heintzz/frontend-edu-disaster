@@ -1,10 +1,12 @@
 'use client';
 
+import { ModalDeleteConfirmation } from '@/components/ModalDelete';
 import SkeletonTable from '@/components/skeleton/SkeletonTable';
 import AdminServices from '@/services/admin.services';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { MdSearch } from 'react-icons/md';
 
 const jakartaSans = Plus_Jakarta_Sans({
@@ -22,6 +24,9 @@ const headers = [
 const HalamanDashboardDaftarSiswa = () => {
   const [studentList, setStudentList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [studentId, setStudentId] = useState('');
+  const [triggerDelete, setTriggerDelete] = useState(false);
 
   const fetchStudentList = async () => {
     try {
@@ -36,12 +41,36 @@ const HalamanDashboardDaftarSiswa = () => {
     }
   };
 
+  const deleteStudent = async () => {
+    try {
+      const response = await AdminServices.deleteUser(studentId);
+      if (response.success) {
+        toast.success('Siswa berhasil dihapus');
+        setTriggerDelete(!triggerDelete);
+        setOpenModal(false);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error);
+      toast.error('Gagal menghapus siswa');
+    }
+  };
+
   useEffect(() => {
     fetchStudentList();
-  }, []);
+  }, [triggerDelete]);
 
   return (
     <div className="w-4/5 ml-[20%] px-[5vh] pt-[4vh] flex flex-col gap-12">
+      <ModalDeleteConfirmation
+        isOpen={openModal}
+        onClose={() => {
+          setOpenModal(false);
+          setStudentId('');
+        }}
+        onDelete={deleteStudent}
+        role="Siswa"
+      />
       <div className="w-full flex gap-4 items-center rounded-md bg-[#E0E0E0] p-3">
         <MdSearch size={20} color="gray" />
         <input
@@ -86,6 +115,10 @@ const HalamanDashboardDaftarSiswa = () => {
                     width={24}
                     height={24}
                     className="cursor-pointer"
+                    onClick={() => {
+                      setOpenModal(true);
+                      setStudentId(student.id);
+                    }}
                   />
                 </div>
               </div>
