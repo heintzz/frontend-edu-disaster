@@ -5,8 +5,6 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { AiOutlineLineChart } from 'react-icons/ai';
-import { FaHome } from 'react-icons/fa';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import avatar from '@/public/profile.svg';
@@ -29,10 +27,12 @@ const NavbarAdmin = ({ profile }) => {
 
   const handleSiswaClick = () => {
     setIsSiswaClicked(true);
+    router.push('/admin/siswa');
   };
 
   const handleGuruClicked = () => {
     setIsSiswaClicked(false);
+    router.push('/admin/guru');
   };
 
   const handleImageChange = (e) => {
@@ -67,7 +67,7 @@ const NavbarAdmin = ({ profile }) => {
 
   return (
     <div
-      className={`w-1/5 h-screen bg-[#253333] flex flex-col items-center ${jakartaSans.className}`}
+      className={`w-1/5 fixed h-screen bg-[#253333] flex flex-col items-center ${jakartaSans.className}`}
     >
       <div className="h-1/4 w-full flex flex-col items-center justify-center gap-6 border-b-[1px] border-[#BDBDBD]">
         <div className="relative">
@@ -99,20 +99,11 @@ const NavbarAdmin = ({ profile }) => {
             onClick={handleGuruClicked}
           >
             <div className="flex gap-3 items-center">
-              <Image 
-                src={"/toga.svg"}
-                alt="toga"
-                width={16}
-                height={16}
-                color='white'
-              />
+              <Image src={'/toga.svg'} alt="toga" width={16} height={16} color="white" />
               <p className="font-semibold text-sm text-white">Guru</p>
             </div>
             {!isSiswaClicked && (
-              <MdKeyboardArrowRight
-                size={16}
-                color={!isSiswaClicked ? 'white' : 'transparent'}
-              />
+              <MdKeyboardArrowRight size={16} color={!isSiswaClicked ? 'white' : 'transparent'} />
             )}
           </button>
           <button
@@ -122,20 +113,11 @@ const NavbarAdmin = ({ profile }) => {
             onClick={handleSiswaClick}
           >
             <div className="flex gap-3 items-center">
-              <Image 
-                src={"/toga.svg"}
-                alt="toga"
-                width={16}
-                height={16}
-                color='white'
-              />
+              <Image src={'/toga.svg'} alt="toga" width={16} height={16} color="white" />
               <p className="font-semibold text-sm text-white">Siswa</p>
             </div>
             {isSiswaClicked && (
-              <MdKeyboardArrowRight
-                size={16}
-                color={isSiswaClicked ? 'white' : 'transparent'}
-              />
+              <MdKeyboardArrowRight size={16} color={isSiswaClicked ? 'white' : 'transparent'} />
             )}
           </button>
         </div>

@@ -6,9 +6,6 @@ import Chart from 'chart.js/auto';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { IoArrowBackOutline } from 'react-icons/io5';
-import { Plus_Jakarta_Sans } from 'next/font/google';
-
-const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400'] });
 
 const ProgressBar = ({ progressColor, progress, progressText }) => {
   return (

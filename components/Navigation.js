@@ -12,7 +12,15 @@ const Navigation = ({ existedUser }) => {
       }}
     >
       {existedUser ? (
-        <Link href={existedUser.role === enums.ROLE.TEACHER ? '/dashboard/kelas' : '/profil'}>
+        <Link
+          href={
+            existedUser.role === enums.ROLE.TEACHER
+              ? '/dashboard/kelas'
+              : existedUser.role === enums.ROLE.ADMIN
+              ? '/admin/guru'
+              : '/profil'
+          }
+        >
           <FaRegCircleUser color="white" className="w-6 h-6" />
         </Link>
       ) : (
