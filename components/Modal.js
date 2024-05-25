@@ -11,7 +11,7 @@ export default function Modal({ children }) {
   const setActivity = useSetRecoilState(activityState);
 
   return (
-    <div className="h-full py-5 px-10 md:px-[10vw] lg:py-10">
+    <div className="h-full py-5 px-10 md:px-[10vw] lg:pt-[9vh] lg:pb-[4vh]">
       <div className="h-full bg-white rounded-3xl relative">
         <Image
           src={closeBtn}
