@@ -24,7 +24,7 @@ export default function MateriGempa({ handleBack }) {
   const [showImage, setShowImage] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [title, setTitle] = useState('Proses Terjadinya Tsunami');
+  const [title, setTitle] = useState('Proses Terjadinya Gempa Bumi');
   const audioRef = useRef(null);
   const contentRef = useRef(null);
 
