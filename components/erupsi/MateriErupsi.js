@@ -114,7 +114,7 @@ export default function MateriErupsi({ handleBack }) {
             )}
           </div>
           <p
-            className={`${caesarDressing.className} text-[9px] md:text-xs lg:text-xl text-center bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+            className={`${caesarDressing.className} md:px-5 text-[9px] md:text-xs lg:text-xl text-center bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
           >
             Tip: klik pada gambar dan pindai untuk lihat animasi AR!
           </p>
