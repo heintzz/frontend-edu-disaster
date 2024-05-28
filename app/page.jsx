@@ -16,6 +16,7 @@ import EruptionContent from '@/components/erupsi/EruptionContent';
 import EvaluationContent from '@/components/evaluasi/EvaluationContent';
 import MitigationContent from '@/components/mitigasi/MitigationContent';
 import TsunamiContent from '@/components/tsunami/TsunamiContent';
+import GempaContent from '@/components/gempa/GempaContent';
 import enums from '@/enums/enum';
 import Cookies from 'js-cookie';
 import { Caesar_Dressing } from 'next/font/google';
@@ -198,6 +199,14 @@ function Home() {
             </Modal>
           </Container>
         );
+      case enums.ACTIVITY.EARTHQUAKE:
+        return (
+          <Container>
+            <Modal>
+              <GempaContent />
+            </Modal>
+          </Container>
+        )
       case enums.ACTIVITY.MITIGATION:
         return (
           <Container>
