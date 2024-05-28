@@ -1,10 +1,12 @@
 'use client';
 
 import { userProfileAtom } from '@/atoms/user.profile';
+import utils from '@/lib/utils';
 import StudentServices from '@/services/student.services';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
 
 const ProfilSiswa = () => {
@@ -20,8 +22,7 @@ const ProfilSiswa = () => {
 
   const [classes, setClasses] = useState([]);
   const [classCode, setClassCode] = useState('');
-  const [isLoadingClasses, setIsLoadingClasses] = useState(true);
-  const [refetchToggle, setRefetchToggle] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [studentNotes, setStudentNotes] = useState([]);
 
@@ -30,6 +31,7 @@ const ProfilSiswa = () => {
       const res = await StudentServices.getStudentProgress();
       if (res.success) {
         setProgress(res.data);
+        fetchStudentNotes();
       }
     } catch (error) {
       console.error(error);
@@ -42,10 +44,22 @@ const ProfilSiswa = () => {
       if (res.success) {
         setClasses(res.data);
       }
-      setIsLoadingClasses(false);
     } catch (error) {
       console.error(error);
-      setIsLoadingClasses(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchStudentNotes = async () => {
+    try {
+      const res = await StudentServices.getStudentNotes();
+      if (res.success) {
+        setStudentNotes(res.data);
+        fetchStudentClass();
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -53,11 +67,13 @@ const ProfilSiswa = () => {
     try {
       const res = await StudentServices.joinClass(classCode);
       if (res.success) {
-        setRefetchToggle(!refetchToggle);
+        fetchStudentClass();
         setClassCode('');
+        toast.success('Berhasil bergabung ke kelas');
       }
     } catch (error) {
       console.error(error);
+      toast.error(error);
     }
   };
 
@@ -67,12 +83,6 @@ const ProfilSiswa = () => {
     setIsLoadingProfile(false);
     fetchStudentProgress();
   }, []);
-
-  useEffect(() => {
-    if (userProfile) {
-      fetchStudentClass();
-    }
-  }, [userProfile, refetchToggle]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -164,7 +174,8 @@ const ProfilSiswa = () => {
               <p className="text-base sm:text-lg lg:text-xl mb-1">{userProfile?.email}</p>
             </>
           )}
-          {isLoadingClasses ? (
+
+          {isLoading ? (
             <div className="animate-pulse">
               <div className="h-6 bg-gray-200 rounded-lg w-64 mb-4"></div>
             </div>
@@ -190,45 +201,58 @@ const ProfilSiswa = () => {
             </div>
           )}
         </div>
-        <div className="flex gap-6 sm:gap-10 my-10 justify-center">
-          {/* NOTE: dikerjakan kapan-kapan */}
-          {/* <div className="relative">
-            <img
-              src="ellipse.svg"
-              alt="diagram nilai"
-              className="z-[0] relative w-[70px] h-[70px] sm:w-[78px] sm:h-[78px] lg:w-[86px] lg:h-[86px]"
-            />
-            <p className="font-semibold text-base sm:text-lg lg:text-xl absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[1]">
-              0%
-            </p>
-          </div> */}
-          <div className="flex gap-3 items-center">
-            <img
-              src="check.svg"
-              alt="tanda centang"
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12"
-            />
-            <p className="font-semibold text-base sm:text-lg lg:text-xl">{completed}/12</p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          {studentNotes.length > 0 ? (
-            studentNotes.map((note, index) => (
-              <div
-                key={index}
-                className="w-5/6 sm:w-3/4 lg:w-2/3 rounded-[10px] bg-[#F5F5F5] px-4 py-2"
-              >
-                <p className="text-[#000000ED] text-sm lg:text-base text-justify">{note}</p>
-              </div>
-            ))
-          ) : (
-            <div className="w-5/6 sm:w-3/4 lg:w-2/3 rounded-[10px] px-4 py-2">
-              <p className="text-[#000000ED] text-center text-sm lg:text-base">
-                Belum ada catatan dari guru 🌼
-              </p>
+
+        {isLoading ? (
+          <div className="flex gap-6 sm:gap-10 my-10 justify-center animate-pulse">
+            <div className="flex gap-3 items-center">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full"></div>
+              <div className="h-6 bg-gray-200 rounded-md w-16"></div>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="flex gap-6 sm:gap-10 my-10 justify-center">
+            <div className="flex gap-3 items-center">
+              <img
+                src="check.svg"
+                alt="tanda centang"
+                className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12"
+              />
+              <p className="font-semibold text-base sm:text-lg lg:text-xl">{completed}/12</p>
+            </div>
+          </div>
+        )}
+
+        {isLoading ? (
+          <div className="flex flex-col items-center gap-2">
+            <div className="h-8 sm:w-3/4 lg:w-2/3 animate-pulse bg-gray-200 rounded-md mb-2"></div>
+            <div className="h-8 sm:w-3/4 lg:w-2/3 animate-pulse bg-gray-200 rounded-md mb-2"></div>
+            <div className="h-8 sm:w-3/4 lg:w-2/3 animate-pulse bg-gray-200 rounded-md mb-2"></div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-2">
+            {studentNotes.length > 0 ? (
+              studentNotes.map((note, _) => (
+                <div
+                  key={note.id}
+                  className="w-5/6 sm:w-3/4 lg:w-2/3 rounded-[10px] bg-[#F5F5F5] px-4 py-2"
+                >
+                  <div className="text-[#000000ED] text-sm lg:text-base text-justify flex flex-col">
+                    <div dangerouslySetInnerHTML={{ __html: note.content }} />
+                    <p className="text-xs text-gray-500 mt-2">
+                      {utils.formatDateToString(note.created_at)}
+                    </p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="w-5/6 sm:w-3/4 lg:w-2/3 rounded-[10px] px-4 py-2">
+                <p className="text-[#000000ED] text-center text-sm lg:text-base">
+                  Belum ada catatan dari guru
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

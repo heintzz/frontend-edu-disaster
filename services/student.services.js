@@ -70,6 +70,25 @@ const getStudentProgress = async () => {
   });
 };
 
+const getStudentNotes = async () => {
+  const token = tokenServices.getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    apiV1
+      .get('/student/notes', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const getStudentClass = async () => {
   const token = tokenServices.getAccessToken();
 
@@ -141,6 +160,7 @@ const StudentServices = {
   joinClass,
   getStudentClass,
   getStudentProgress,
+  getStudentNotes,
   updateStudentProgress,
   createEvaluation,
   submitAnswers,

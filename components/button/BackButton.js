@@ -8,7 +8,7 @@ export default function BackButton({ back }) {
   return (
     <button
       onClick={back}
-      className="w-fit flex items-center gap-x-2 bg-[#29ADB2] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl"
+      className="w-fit h-fit flex items-center gap-x-2 bg-[#29ADB2] text-white font-bold p-1 text-sm lg:py-2 lg:px-4 rounded-[10px] lg:text-2xl"
     >
       <Image src={arrowBack} alt="back icon" className="w-6 h-6" />
       <span className={caesarDressing.className}>Kembali</span>

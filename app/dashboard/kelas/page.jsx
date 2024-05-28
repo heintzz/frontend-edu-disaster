@@ -116,7 +116,7 @@ const HalamanDashboardKelas = () => {
 
   if (userProfile) {
     return userProfile?.is_verified ? (
-      <div className="w-4/5 ml-[20%] px-[5vh] pt-[4vh] flex flex-col gap-12">
+      <div className="w-4/5 ml-[20%] px-[5vh] py-[4vh] flex flex-col gap-12">
         <button className="rounded px-[8px] py-[10px] w-fit bg-[#29ADB2]" onClick={handleBuatKelas}>
           <p className="font-semibold text-sm text-center text-white">Buat Kelas</p>
         </button>

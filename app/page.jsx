@@ -17,7 +17,6 @@ import EvaluationContent from '@/components/evaluasi/EvaluationContent';
 import MitigationContent from '@/components/mitigasi/MitigationContent';
 import TsunamiContent from '@/components/tsunami/TsunamiContent';
 import enums from '@/enums/enum';
-import { createUrl } from '@/lib/utils';
 import Cookies from 'js-cookie';
 import { Caesar_Dressing } from 'next/font/google';
 import Link from 'next/link';
@@ -30,6 +29,7 @@ import evaluationImage from '../public/menu/evaluasi.png';
 import earthquakeImage from '../public/menu/gempa.png';
 import mitigationImage from '../public/menu/mitigasi.png';
 import tsunamiImage from '../public/menu/tsunami.png';
+import utils from '@/lib/utils';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -127,7 +127,6 @@ function Home() {
       case enums.ACTIVITY.IDLE:
         return (
           <Container>
-            {/* <ChatbotMenu />  */}
             <div className="h-full relative flex flex-col lg:gap-y-2 items-center justify-center lg:pt-10">
               <p
                 className={`${caesarDressing.className} text-white text-lg lg:text-5xl text-center`}
@@ -146,7 +145,7 @@ function Home() {
                     const activitySearchParams = new URLSearchParams(searchParams.toString());
                     activitySearchParams.set('activity', activity.state);
                     activitySearchParams.set('index', 0);
-                    const activityURL = createUrl(pathname, activitySearchParams);
+                    const activityURL = utils.createUrl(pathname, activitySearchParams);
 
                     let realOrder = activity.order - 1;
 
