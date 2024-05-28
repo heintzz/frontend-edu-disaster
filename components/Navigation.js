@@ -21,7 +21,7 @@ const Navigation = ({ existedUser }) => {
   return (
     <div className='flex flex-col items-end'>
       <div
-        className="w-full h-[5vh] flex items-center justify-between px-5 py-2 fixed z-[100]"
+        className="w-full h-[5vh] flex items-center justify-between px-5 py-2 fixed z-[1000]"
         style={{
           backgroundImage: 'linear-gradient(to right, #29ADB2, #2C2C2C)',
         }}

@@ -158,7 +158,7 @@ const Map = () => {
   return (
     <div className={`${jakartaSans.className}`}>
       <MapContainer
-        className="w-full h-[calc(100dvh-40px)]"
+        className="w-full h-screen"
         center={indonesiaCoordinate}
         zoom={6}
         attributionControl={false}

@@ -12,6 +12,7 @@ import { useRecoilValue } from 'recoil';
 import arrowBack from '../../public/arrowBack.svg';
 import arrowNext from '../../public/arrowNext.svg';
 import HalamanHasil from '@/components/evaluasi/HalamanHasil';
+import toast from 'react-hot-toast';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -66,6 +67,7 @@ export default function HalamanEvaluasi() {
       } catch (error) {
         console.log(error);
         setIsLoadingSubmit(false);
+        toast.error('Gagal mengirim jawaban, coba lagi nanti');
       }
     } else {
       localStorage.setItem(
