@@ -36,11 +36,17 @@ const ROLE = {
   SUPERADMIN: 'superadmin',
 };
 
+const PERSON = {
+  BOT: 'bot',
+  USER: 'user',
+};
+
 const enums = {
   ACTIVITY,
   MODULES,
   ROLE,
   DISASTER_TO_MODULES,
+  PERSON,
 };
 
 export default enums;

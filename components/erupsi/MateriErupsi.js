@@ -3,12 +3,12 @@ import Image from 'next/image';
 import { Caesar_Dressing } from 'next/font/google';
 
 import enums from '@/enums/enum';
-import { useState, useRef, useEffect } from 'react';
-import qrErupsi from '../../public/qr/qr-erupsi.png';
-import eruptionImage from '../../public/display/erupsi.png';
-import BackButton from '../button/BackButton';
-import ExploreMapButton from '../button/ExploreMapButton';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { useEffect, useRef, useState } from 'react';
+import eruptionImage from '../../public/display/erupsi.png';
+import qrErupsi from '../../public/qr/qr-erupsi.png';
+import BackButtonMateri from '../button/BackButtonMateri';
+import ExploreMapButtonMateri from '../button/ExploreMapButtonMateri';
 
 const caesarDressing = Caesar_Dressing({
   subsets: ['latin'],
@@ -247,7 +247,7 @@ export default function MateriErupsi({ handleBack }) {
         </div>
       </div>
       <div className="flex justify-between items-center mx-[1vw]">
-        <BackButton back={handleBack} />
+        <BackButtonMateri back={handleBack} />
         <div className="w-1/3 flex items-center px-4 py-2.5 rounded-lg border border-[#29ADB2]">
           <button className="rounded-full flex items-center mr-4" onClick={togglePlayPause}>
             {isPlaying ? (
@@ -266,7 +266,7 @@ export default function MateriErupsi({ handleBack }) {
           </div>
           <audio ref={audioRef} src="/audio/audio-erupsi.mp3"></audio>
         </div>
-        <ExploreMapButton disaster={enums.ACTIVITY.ERUPTION} />
+        <ExploreMapButtonMateri disaster={enums.ACTIVITY.ERUPTION} />
       </div>
     </div>
   );

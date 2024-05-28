@@ -9,3 +9,8 @@
 .swiper-slide {
   transition: all 0.3s ease;
 }
+
+li {
+  list-style-type: disc !important;
+  margin-left: 20px;
+}
