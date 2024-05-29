@@ -38,6 +38,24 @@ const getStudentNotes = async (studentId) => {
   });
 };
 
+const getStudentEvaluationAnswers = async (studentId) => {
+  const token = tokenServices.getAccessToken();
+  return new Promise((resolve, reject) => {
+    apiV1
+      .get(`/teacher/students/${studentId}/evaluations`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const createStudentNote = async (studentId, noteContent) => {
   const token = tokenServices.getAccessToken();
   return new Promise((resolve, reject) => {
@@ -81,6 +99,7 @@ const deleteStudentNote = async (studentId, noteId) => {
 const TeacherServices = {
   getStudentProgress,
   getStudentNotes,
+  getStudentEvaluationAnswers,
   createStudentNote,
   deleteStudentNote,
 };
