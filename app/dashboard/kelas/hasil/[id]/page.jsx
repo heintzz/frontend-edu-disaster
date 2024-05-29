@@ -3,16 +3,9 @@
 import questions from '@/lib/questions';
 import TeacherServices from '@/services/teacher.services';
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Pie } from 'react-chartjs-2';
 import { IoArrowBackOutline } from 'react-icons/io5';
-
-const jakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-});
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

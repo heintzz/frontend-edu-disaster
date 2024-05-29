@@ -140,6 +140,7 @@ export default function MitigationContent() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          setShowMenu(false);
                           actionClickAddURLParams(2);
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
@@ -149,6 +150,7 @@ export default function MitigationContent() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          setShowMenu(false);
                           actionClickAddURLParams(3);
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
@@ -158,6 +160,7 @@ export default function MitigationContent() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          setShowMenu(false);
                           actionClickAddURLParams(4);
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
@@ -201,25 +204,27 @@ export default function MitigationContent() {
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
-                  Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
-                  terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
+                  Kegiatan mitigasi bencana tsunami dilakukan untuk dapat meminimalisir
+                  risiko/dampak bencana tsunami. Kegiatan mitigasi bencana tsunami sebagai berikut:
                 </p>
-                <ol className="list-decimal mt-5 pl-5 flex flex-col gap-y-1 lg:gap-y-5">
+                <ol className="list-decimal mt-5 flex flex-col gap-y-2">
                   <li>
-                    Pemetaan daerah rawan tsunami dan sistem peringatan dini merupakan hal krusial
-                    untuk memberikan peringatan kepada masyarakat agar dapat mengungsikan diri ke
-                    tempat yang lebih aman
-                  </li>
-                  <li>
-                    Pembangunan infrastruktur tahan tsunami seperti tanggul laut, gedung-gedung
-                    vertikal yang kokoh, dan rute evakuasi dapat membantu melindungi nyawa dan aset
-                    berharga. Ketiga, edukasi dan sosialisasi kepada masyarakat tentang risiko
-                    tsunami dan prosedur evakuasi sangat penting untuk meningkatkan kesiapsiagaan.
-                  </li>
-                  <li>
-                    Koordinasi antar lembaga terkait dan perencanaan pemulihan pasca-bencana dapat
-                    membantu percepatan proses rekonstruksi dan rehabilitasi daerah yang terdampak
+                    Penanaman mangrove (bakau) di sepanjang pantai untuk menghambat gelombang
                     tsunami
+                  </li>
+                  <li>
+                    Pembekalan pengetahuan terkait data gempa yang berpotensi mengakibatkan tsunami.
+                    Data ini seperti gempa dengan pusat getaran di laut dangkal (0-30 km) hingga
+                    laut tengah, kekuatan paling rendah 6,5 SR, dan pola sesar yang turun atau naik
+                  </li>
+                  <li>
+                    Terdapat sistem peringatan dini tsunami dalam skala regional dan internasional
+                  </li>
+                  <li>Pengadaan pemantauan berkala</li>
+                  <li>
+                    Sistem pendeteksi tsunami dirancang dua bagian. Pertama jaringan komunikasi dan
+                    infrastruktur untuk menyampaikan informasi adanya bahaya tsunami sebagai
+                    peringatan dini. Kedua, jaringan sensor pendeteksi tsunami akan terjad
                   </li>
                 </ol>
               </div>
@@ -236,26 +241,23 @@ export default function MitigationContent() {
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
-                  Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
-                  terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
+                  Kegiatan mitigasi bencana gempa bumi dilakukan untuk meminimalisir risiko/dampak
+                  bencana. Kegiatan mitigasi bencana gempa bumi sebagai berikut:
                 </p>
-                <ol className="list-decimal mt-5 pl-5 flex flex-col gap-y-1 lg:gap-y-5">
+                <ol className="list-decimal mt-5 flex flex-col gap-y-2">
+                  <li>Identifikasi sumber bahaya dan ancaman bencana</li>
+                  <li>Mendirikan bangunan sesuai aturan baku (tahan gempa)</li>
                   <li>
-                    Pemetaan daerah rawan tsunami dan sistem peringatan dini merupakan hal krusial
-                    untuk memberikan peringatan kepada masyarakat agar dapat mengungsikan diri ke
-                    tempat yang lebih aman
+                    Memahami lokasi bangunan tempat tinggal dan menempatkan perabotan pada tempat
+                    yang proporsional
                   </li>
+                  <li>Menyiapkan peralatan seperti senter, P3K, makanan instan, dll</li>
+                  <li>Memeriksa penggunaan listrik dan gas</li>
+                  <li>Mencatat nomor telepon penting dalam penanganan kebencanaan gempa bumi</li>
                   <li>
-                    Pembangunan infrastruktur tahan tsunami seperti tanggul laut, gedung-gedung
-                    vertikal yang kokoh, dan rute evakuasi dapat membantu melindungi nyawa dan aset
-                    berharga. Ketiga, edukasi dan sosialisasi kepada masyarakat tentang risiko
-                    tsunami dan prosedur evakuasi sangat penting untuk meningkatkan kesiapsiagaan.
+                    Memahami jalur evakuasi dan mengikuti kegiatan simulasi mitigasi bencana gempa
                   </li>
-                  <li>
-                    Koordinasi antar lembaga terkait dan perencanaan pemulihan pasca-bencana dapat
-                    membantu percepatan proses rekonstruksi dan rehabilitasi daerah yang terdampak
-                    tsunami
-                  </li>
+                  <li>Pemantauan penggunaan teknologi yang dilakukan secara tiba-tiba</li>
                 </ol>
               </div>
             </div>
@@ -271,26 +273,31 @@ export default function MitigationContent() {
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
                 <p>
-                  Langkah-langkah mitigasi ini mencakup perencanaan dan persiapan sebelum tsunami
-                  terjadi, serta tindakan tanggap darurat dan pemulihan setelah tsunami melanda.
+                  Kegiatan mitigasi bencana letusan gunung berapi dilakukan untuk meminimalisir
+                  risiko/dampak bencana. Kegiatan mitigasi bencana letusan gunung berapi sebagai
+                  berikut:
                 </p>
-                <ol className="list-decimal mt-5 pl-5 flex flex-col gap-y-1 lg:gap-y-5">
+                <ol className="list-decimal mt-5 flex flex-col gap-y-2">
                   <li>
-                    Pemetaan daerah rawan tsunami dan sistem peringatan dini merupakan hal krusial
-                    untuk memberikan peringatan kepada masyarakat agar dapat mengungsikan diri ke
-                    tempat yang lebih aman
+                    Pembangunan tanggul untuk menahan lahar agar tidak masuk ke wilayah pemukiman
+                  </li>
+                  <li>Pengadaan pemantauan berkala</li>
+                  <li>
+                    Pengiriman data pemantauan ke Direktorat Vulkanologi dan Mitigasi Bencana
+                    Geologi (DVMBG) di Bandung dengan radio komunikasi SSB, d. kegiatan tanggap
+                    darurat. Tindakan yang dilakukan ketika terjadi peningkatan aktivitas gunung api
+                    yaitu melakukan pemeriksaan berkala dan terpadu, mengevaluasi laporan dan data
+                    aktivitas vulkanik, mengirimkan tim lokasi, dan membentuk tim tanggap darurat
                   </li>
                   <li>
-                    Pembangunan infrastruktur tahan tsunami seperti tanggul laut, gedung-gedung
-                    vertikal yang kokoh, dan rute evakuasi dapat membantu melindungi nyawa dan aset
-                    berharga. Ketiga, edukasi dan sosialisasi kepada masyarakat tentang risiko
-                    tsunami dan prosedur evakuasi sangat penting untuk meningkatkan kesiapsiagaan.
+                    Pemetaan, peta kawasan rawan bencana gunung berapi dapat menjelaskan jenis dan
+                    sifat bahaya, daerah rawan bencana, arah penyelamatan diri, pengungsian, dan pos
+                    penanggulangan bencana gunung berap
                   </li>
                   <li>
-                    Koordinasi antar lembaga terkait dan perencanaan pemulihan pasca-bencana dapat
-                    membantu percepatan proses rekonstruksi dan rehabilitasi daerah yang terdampak
-                    tsunami
+                    Penyelidikan gunung berapi menggunakan metode geologi, geofisika, dan geokimia
                   </li>
+                  <li>Sosialisasi yang dilakukan pada pemerintah daerah dan masyarakat</li>
                 </ol>
               </div>
             </div>
@@ -305,11 +312,11 @@ export default function MitigationContent() {
                 Jenis Mitigasi
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
-                <ol className="list-decimal mt-5 pl-5 flex flex-col gap-y-1 lg:gap-y-5">
+                <ol className="list-decimal mt-5 flex flex-col gap-y-1 lg:gap-y-5">
                   <li>
                     <span className="font-bold">Mitigasi Struktural</span>
                     <br />
-                    Pencegahan bencana yang berfokus pada&nbsp;
+                    {/* Pencegahan bencana yang berfokus pada&nbsp;
                     <span className="bg-yellow-200 font-bold">
                       pembangunan dan penggunaan struktur fisik
                     </span>
@@ -317,7 +324,13 @@ export default function MitigationContent() {
                     <br />
                     Contoh: pembangunan tanggul laut raksasa di Jakarta yang bertujuan mencegah
                     luapan air laut yang dapat merusak infrastruktur dan rumah penduduk di
-                    sekitarnya
+                    sekitarnya */}
+                    Upaya meminimalkan bencana yang dilakukan melalui pembangunan berbagai prasarana
+                    fisik dan menggunakan pendekatan teknologi tahan bencana yang tersedia
+                    <br />
+                    Contoh: Alat pendeteksi aktivitas gunung berapi, bangungan yang bersifat tahan
+                    gempa, ataupun Early System Warning yang digunakan untuk memprediksi terjadinya
+                    gelombang tsunami
                   </li>
                   <li>
                     <span className="font-bold">Mitigasi Non-Struktural</span>
@@ -350,7 +363,7 @@ export default function MitigationContent() {
                 />
                 <div className="max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto -ml-5">
                   Fakta menarik tentang BNPB:
-                  <ul className="list-disc pl-10">
+                  <ul className="list-disc">
                     <li>BNPB didirikan pada tahun 2008</li>
                     <li>BNPB memiliki 34 kantor di provinsi se-Indonesia</li>
                     <li>BNPB telah membantu menanggulangi berbagai bencana alam di Indonesia</li>
@@ -393,7 +406,7 @@ export default function MitigationContent() {
                 />
                 <div className="max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto -ml-5">
                   Fakta menarik tentang BMKG:
-                  <ul className="list-disc pl-10">
+                  <ul className="list-disc">
                     <li>BMKG didirikan pada tahun 1966</li>
                     <li>BMKG memiliki 34 kantor di seluruh Indonesia</li>
                     <li>
