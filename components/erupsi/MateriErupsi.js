@@ -264,7 +264,7 @@ export default function MateriErupsi({ handleBack }) {
               }}
             ></div>
           </div>
-          <audio ref={audioRef} src="/audio/audio-erupsi.mp3"></audio>
+          <audio ref={audioRef} src="/audio/audio_erupsi.mp3"></audio>
         </div>
         <ExploreMapButtonMateri disaster={enums.ACTIVITY.ERUPTION} />
       </div>

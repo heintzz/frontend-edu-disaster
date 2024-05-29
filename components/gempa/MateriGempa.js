@@ -223,7 +223,7 @@ export default function MateriGempa({ handleBack }) {
               }}
             ></div>
           </div>
-          <audio ref={audioRef} src="/audio/audio.mp3"></audio>
+          <audio ref={audioRef} src="/audio/audio_gempa.mp3"></audio>
         </div>
         <ExploreMapButtonMateri disaster={enums.ACTIVITY.EARTHQUAKE} />
       </div>

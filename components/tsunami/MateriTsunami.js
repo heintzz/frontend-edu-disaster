@@ -216,7 +216,7 @@ export default function MateriTsunami({ handleBack }) {
               }}
             ></div>
           </div>
-          <audio ref={audioRef} src="/audio/audio-tsunami.mp3"></audio>
+          <audio ref={audioRef} src="/audio/audio_tsunami.mp3"></audio>
         </div>
         <ExploreMapButtonMateri disaster={enums.ACTIVITY.TSUNAMI} />
       </div>
