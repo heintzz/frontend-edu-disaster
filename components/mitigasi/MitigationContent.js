@@ -376,7 +376,6 @@ export default function MitigationContent() {
                   Ingin tahu lebih banyak tentang BNPB? Kunjungi website BNPB di
                   <br />
                   <Link href="https://www.bnpb.go.id" className="underline text-blue-800">
-                    {' '}
                     https://www.bnpb.go.id
                   </Link>
                   <br />

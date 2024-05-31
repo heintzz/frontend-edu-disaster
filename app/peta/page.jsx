@@ -12,7 +12,7 @@ import StudentServices from '@/services/student.services';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 const DynamicMap = dynamic(() => import('../../components/Map'), {
@@ -55,6 +55,7 @@ const SuspenseHalamanPeta = () => {
 
 function HalamanPeta() {
   const searchParams = useSearchParams();
+  const [disasterType, setDisasterType] = useState(searchParams.get('bencana') || 'erupsi');
   const [userProfile, setUserProfile] = useRecoilState(userProfileAtom);
 
   useEffect(() => {
@@ -74,13 +75,16 @@ function HalamanPeta() {
     const module = searchParams.get('bencana');
     if (module) {
       updateStudentProgress(module);
+      setDisasterType(module);
+    } else {
+      updateStudentProgress('erupsi');
     }
   }, [searchParams]);
 
   return (
     <main>
       <Navigation existedUser={userProfile} />
-      <DynamicMap />
+      <DynamicMap disasterType={disasterType} />
       <Link href="/">
         <BackToHomeButton />
       </Link>
