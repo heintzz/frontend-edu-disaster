@@ -55,7 +55,7 @@ const SuspenseHalamanPeta = () => {
 
 function HalamanPeta() {
   const searchParams = useSearchParams();
-  const [disasterType, setDisasterType] = useState(searchParams.get('bencana') || 'erupsi');
+  const [disasterType, setDisasterType] = useState(searchParams.get('bencana') || 'eruption');
   const [userProfile, setUserProfile] = useRecoilState(userProfileAtom);
 
   useEffect(() => {
