@@ -3,16 +3,33 @@
 import enums from '@/enums/enum';
 import apiV1 from '@/lib/api';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const RegisterPage = () => {
   const router = useRouter();
   const [chosenRole, setChosenRole] = useState(enums.ROLE.STUDENT);
   const [signupData, setSignupData] = useState({});
+  const [institutions, setInstitutions] = useState([]);
 
   const handleButtonClick = (role) => {
     setChosenRole(role);
   };
+
+  const getInstitutions = async () => {
+    try {
+      const res = await apiV1.get('/institution');
+      const data = res.data;
+      if (data.success) {
+        setInstitutions(data.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getInstitutions();
+  }, []);
 
   const registerUser = async () => {
     const data = {
@@ -30,7 +47,7 @@ const RegisterPage = () => {
           password: '',
         });
         setChosenRole(enums.ROLE.STUDENT);
-        alert('Registrasi berhasil');
+        toast.success('Registrasi berhasil');
         router.push('/login');
       }
     } catch (error) {
@@ -45,7 +62,7 @@ const RegisterPage = () => {
 
   const userData = [
     { label: 'Nama Lengkap', type: 'text', placeholder: 'mail ismail', json_name: 'name' },
-    { label: 'Kode Sekolah', type: 'text', placeholder: '12345', json_name: 'institutionCode' },
+    { label: 'Nama Sekolah', type: 'text', placeholder: '12345', json_name: 'institutionCode' },
     { label: 'Email', type: 'email', placeholder: 'mail@abc.com', json_name: 'email' },
     { label: 'Password', type: 'password', placeholder: '*********', json_name: 'password' },
   ];
@@ -82,13 +99,31 @@ const RegisterPage = () => {
           {userData.map((item) => (
             <div className="w-full flex flex-col gap-2" key={item.label}>
               <p className="font-semibold text-sm text-[#DDDDDD]">{item.label}</p>
-              <input
-                name={item.json_name}
-                className="w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] text-sm bg-[#253333] focus:outline-none"
-                type={item.type}
-                placeholder={item.placeholder}
-                onChange={handleValueChange}
-              />
+              {item.json_name === 'institutionCode' ? (
+                <select
+                  name={item.json_name}
+                  className="w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] text-sm bg-[#253333] focus:outline-none"
+                  onChange={handleValueChange}
+                  defaultValue=""
+                >
+                  <option value="" disabled={signupData['institutionCode'] != ''}>
+                    Pilih Sekolah
+                  </option>
+                  {institutions.map((institution) => (
+                    <option key={institution.code} value={institution.code}>
+                      {institution.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  name={item.json_name}
+                  className="w-full border border-[#DED2D9] rounded-md px-[13px] py-[10px] text-[#E0E0E0] text-sm bg-[#253333] focus:outline-none"
+                  type={item.type}
+                  placeholder={item.placeholder}
+                  onChange={handleValueChange}
+                />
+              )}
             </div>
           ))}
           <button
