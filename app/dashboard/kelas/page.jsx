@@ -6,6 +6,7 @@ import { tokenServices } from '@/services/token.services';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { IoCopyOutline } from 'react-icons/io5';
 import { MdSearch } from 'react-icons/md';
@@ -101,10 +102,10 @@ const HalamanDashboardKelas = () => {
     navigator.clipboard
       .writeText(kodeKelas)
       .then(() => {
-        alert(`Teks disalin ke clipboard: ${kodeKelas}`);
+        toast.success(`Teks disalin ke clipboard: ${kodeKelas}`);
       })
       .catch((error) => {
-        console.error('Gagal menyalin teks ke clipboard:', error);
+        toast.error('Gagal menyalin teks ke clipboard:', error);
       });
   };
 
