@@ -18,6 +18,7 @@ import Mitigasi4 from '../../public/menu/mitigasi/orang-mitigasi-4.webp';
 import Link from 'next/link';
 import BackButton from '../button/BackButton';
 import NextButton from '../button/NextButton';
+import StudentServices from '@/services/student.services';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -91,7 +92,9 @@ export default function MitigationContent() {
         return (
           <div className="flex justify-center h-full pt-[24vh] pb-[20vh]">
             <div className="relative ">
-              <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}>
+              <p
+                className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+              >
                 Mitigasi
               </p>
               <Image
@@ -129,7 +132,9 @@ export default function MitigationContent() {
             <div
               className={`flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 md:px-10 ${caesarDressing.className}`}
             >
-              <p className="text-center text-3xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent">Pilih Topik</p>
+              <p className="text-center text-3xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent">
+                Pilih Topik
+              </p>
               <div className="grid grid-cols-3 gap-x-3 md:gap-x-7 lg:gap-x-10 mt-2 lg:mt-10 text-white">
                 <div
                   onClick={() => setShowMenu((prev) => !prev)}
@@ -138,9 +143,12 @@ export default function MitigationContent() {
                   {showMenu ? (
                     <>
                       <button
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.stopPropagation();
                           setShowMenu(false);
+                          await StudentServices.updateStudentProgress(
+                            enums.MODULES.TSUNAMIMITIGATION
+                          );
                           actionClickAddURLParams(2);
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
@@ -148,9 +156,12 @@ export default function MitigationContent() {
                         TSUNAMI
                       </button>
                       <button
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.stopPropagation();
                           setShowMenu(false);
+                          await StudentServices.updateStudentProgress(
+                            enums.MODULES.EARTHQUAKEMITIGATION
+                          );
                           actionClickAddURLParams(3);
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
@@ -158,10 +169,13 @@ export default function MitigationContent() {
                         GEMPA BUMI
                       </button>
                       <button
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.stopPropagation();
                           setShowMenu(false);
                           actionClickAddURLParams(4);
+                          await StudentServices.updateStudentProgress(
+                            enums.MODULES.ERUPTIONMITIGATION
+                          );
                         }}
                         className="py-1 px-5 text-xs sm:py-2 md:text-base lg:min-w-[200px] bg-[#2A6B6D] hover:bg-[#2A6B6D]/50 rounded-2xl"
                       >
@@ -197,9 +211,11 @@ export default function MitigationContent() {
         );
       case 2:
         return (
-          <div className='h-full overflow-y-auto'>
+          <div className="h-full overflow-y-auto">
             <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 md:px-10">
-              <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}>
+              <p
+                className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+              >
                 Mitigasi dan Adaptasi Bencana Tsunami
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
@@ -227,28 +243,21 @@ export default function MitigationContent() {
                     peringatan dini. Kedua, jaringan sensor pendeteksi tsunami akan terjadi
                   </li>
                 </ol>
-                <p className='mt-[3vh]'>
+                <p className="mt-[3vh]">
                   Upaya adaptasi dalam menghadapi bencana tsunami diantaranya:
                 </p>
                 <ol className="list-decimal mt-5 flex flex-col gap-y-2">
                   <li>
-                    Mengaktifkan partisipasi masyarakat wilayah pesisir yang mempunyai pengalaman dan pengetahuan terkait bencana gempa yang berpotensi tsunami
+                    Mengaktifkan partisipasi masyarakat wilayah pesisir yang mempunyai pengalaman
+                    dan pengetahuan terkait bencana gempa yang berpotensi tsunami
                   </li>
+                  <li>Melakukan pembangunan tembok pemecah gelombang atau breakwater</li>
+                  <li>Pemasangan papan penunjuk jalur evakuasi</li>
+                  <li>Rambu-rambu penunjuk keterdapat arus balik di pantai</li>
+                  <li>Pembangunan tanggul laut atau seawall</li>
                   <li>
-                    Melakukan pembangunan tembok pemecah gelombang atau breakwater
-                  </li>
-                  <li>
-                    Pemasangan papan penunjuk jalur evakuasi
-                  </li>
-                  <li>
-                    Rambu-rambu penunjuk keterdapat arus balik di pantai
-                  </li>
-                  <li>
-                    Pembangunan tanggul laut atau seawall
-                  </li>
-                  <li>
-                    Rambu-rambu penunjuk jalur evakuasi yang memberikan arahan pada
-                    pengunjung maupun masyarakat ketika terjadi tsunami
+                    Rambu-rambu penunjuk jalur evakuasi yang memberikan arahan pada pengunjung
+                    maupun masyarakat ketika terjadi tsunami
                   </li>
                 </ol>
               </div>
@@ -258,9 +267,11 @@ export default function MitigationContent() {
         );
       case 3:
         return (
-          <div className='h-full overflow-y-auto'>
+          <div className="h-full overflow-y-auto">
             <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 md:px-10">
-              <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}>
+              <p
+                className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+              >
                 Mitigasi dan Adaptasi Bencana Gempa Bumi
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
@@ -283,16 +294,16 @@ export default function MitigationContent() {
                   </li>
                   <li>Pemantauan penggunaan teknologi yang dilakukan secara tiba-tiba</li>
                 </ol>
-                <p className='mt-[3vh]'>
-                  Perubahan bentuk dan konstruksi bangunan permukiman masyarakat sesuai
-                  dengan syarat dan standar kelayakan hunian di wilayah yang mereka tempati.
-                  Perubahan konstruksi rumah sebagai bentuk adaptasi terhadap bencana
-                  gempa bumi merupakan wujud strategi adaptasi fisik (Jauhari, 2018). Selain
-                  itu, adaptasi masyarakat juga dapat dilakukan dengan membangun aktivitas
-                  yang dapat menjaga ketahanan pangan mereka, seperti aktivitas living food
-                  bank yaitu menanam tanaman palawija, kelapa, jengkol, rambutan, pisang, ubi
-                  kayu, ubi jalar, dan sebagainya. Upaya tersebut dimaksudkan apabila suatu
-                  saat terjadi gempa, masyarakat tetap mempunyai persediaan pangan
+                <p className="mt-[3vh]">
+                  Perubahan bentuk dan konstruksi bangunan permukiman masyarakat sesuai dengan
+                  syarat dan standar kelayakan hunian di wilayah yang mereka tempati. Perubahan
+                  konstruksi rumah sebagai bentuk adaptasi terhadap bencana gempa bumi merupakan
+                  wujud strategi adaptasi fisik (Jauhari, 2018). Selain itu, adaptasi masyarakat
+                  juga dapat dilakukan dengan membangun aktivitas yang dapat menjaga ketahanan
+                  pangan mereka, seperti aktivitas living food bank yaitu menanam tanaman palawija,
+                  kelapa, jengkol, rambutan, pisang, ubi kayu, ubi jalar, dan sebagainya. Upaya
+                  tersebut dimaksudkan apabila suatu saat terjadi gempa, masyarakat tetap mempunyai
+                  persediaan pangan
                 </p>
               </div>
             </div>
@@ -301,9 +312,11 @@ export default function MitigationContent() {
         );
       case 4:
         return (
-          <div className='h-full overflow-y-auto'>
+          <div className="h-full overflow-y-auto">
             <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 md:px-10">
-              <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}>
+              <p
+                className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+              >
                 Mitigasi dan Adaptasi Bencana Erupsi
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">
@@ -334,13 +347,12 @@ export default function MitigationContent() {
                   </li>
                   <li>Sosialisasi yang dilakukan pada pemerintah daerah dan masyarakat</li>
                 </ol>
-                <p className='mt-[3vh]'>
-                  Masyarakat dapat beradaptasi dengan beberapa upaya. Upaya adaptasi dari
-                  bencana gunung meletus diantaranya pembuatan rumah yang kokoh, dinding
-                  rumah yang tebal dan atap rumah yang tahan terhadap hujan air dan hujan
-                  abu. Masyarakat dapat menggunakan masker dan menggunakan pakaian
-                  tebal supaya dapat terhindar dari dinginnya udara pegunungan dan letusan
-                  abu vulkanik (Yulisar et al., 2019).
+                <p className="mt-[3vh]">
+                  Masyarakat dapat beradaptasi dengan beberapa upaya. Upaya adaptasi dari bencana
+                  gunung meletus diantaranya pembuatan rumah yang kokoh, dinding rumah yang tebal
+                  dan atap rumah yang tahan terhadap hujan air dan hujan abu. Masyarakat dapat
+                  menggunakan masker dan menggunakan pakaian tebal supaya dapat terhindar dari
+                  dinginnya udara pegunungan dan letusan abu vulkanik (Yulisar et al., 2019).
                 </p>
               </div>
             </div>
@@ -351,7 +363,9 @@ export default function MitigationContent() {
         return (
           <div>
             <div className="flex flex-col pt-2 md:pt-3 lg:pt-10 px-5 lg:px-10">
-              <p className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}>
+              <p
+                className={`${caesarDressing.className} text-2xl text-center lg:text-5xl bg-gradient-to-b from-[#000000] to-[#999999] bg-clip-text text-transparent`}
+              >
                 Jenis Mitigasi
               </p>
               <div className="text-xs lg:text-base mt-2 md:mt-5 lg:mt-10 max-h-[43vh] sm:max-h-[50vh] md:max-h-[45vh] overflow-y-auto">

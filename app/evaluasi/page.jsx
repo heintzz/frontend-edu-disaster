@@ -3,16 +3,16 @@ import { Caesar_Dressing } from 'next/font/google';
 import Image from 'next/image';
 
 import { evaluationAtom } from '@/atoms/user.activity';
+import HalamanHasil from '@/components/evaluasi/HalamanHasil';
 import apiV1 from '@/lib/api';
 import questions from '@/lib/questions';
 import StudentServices from '@/services/student.services';
 import { tokenServices } from '@/services/token.services';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useRecoilValue } from 'recoil';
 import arrowBack from '../../public/arrowBack.svg';
 import arrowNext from '../../public/arrowNext.svg';
-import HalamanHasil from '@/components/evaluasi/HalamanHasil';
-import toast from 'react-hot-toast';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -61,6 +61,7 @@ export default function HalamanEvaluasi() {
               score: res.data.score,
             })
           );
+          await StudentServices.updateStudentProgress(enums.MODULES.EVALUATION);
           setIsLoadingSubmit(false);
           setEvaluationCompleted(true);
         }
