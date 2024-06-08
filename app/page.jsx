@@ -1,6 +1,7 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Keyboard } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -139,7 +140,11 @@ function Home() {
                   slidesPerView={3}
                   spaceBetween={30}
                   loop={true}
+                  keyboard={{
+                    enabled: true,
+                  }}
                   initialSlide={0}
+                  modules={[Keyboard]}
                   onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
                 >
                   {activitiesMenu.map((activity, index) => {
@@ -206,7 +211,7 @@ function Home() {
               <GempaContent />
             </Modal>
           </Container>
-        )
+        );
       case enums.ACTIVITY.MITIGATION:
         return (
           <Container>
