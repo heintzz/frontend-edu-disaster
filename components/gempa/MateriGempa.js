@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { Caesar_Dressing } from 'next/font/google';
 
 import enums from '@/enums/enum';
-import { useState, useRef, useEffect } from 'react';
-import dummyQR from '../../public/display/dummyQR.png';
-import gempaImage from '../../public/display/earthquake.jpg';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { useEffect, useRef, useState } from 'react';
+import gempaImage from '../../public/display/earthquake.jpg';
+import qrGempa from '../../public/qr/qr-gempa.png';
 import BackButtonMateri from '../button/BackButtonMateri';
 import ExploreMapButtonMateri from '../button/ExploreMapButtonMateri';
 
@@ -105,7 +105,7 @@ export default function MateriGempa({ handleBack }) {
               />
             ) : (
               <Image
-                src={dummyQR}
+                src={qrGempa}
                 alt="kode qr"
                 className="w-3/4 cursor-pointer transition-transform transform hover:scale-105"
                 onClick={() => setShowImage(true)}
@@ -134,56 +134,46 @@ export default function MateriGempa({ handleBack }) {
               disebabkan oleh tumbukan antar lempeng bumi, patahan aktif, aktivitas gunung api atau
               runtuhan batuan. Fenomena tersebut memiliki sifat merusak, periode waktu yang singkat,
               dan terjadi kapan saja. Gempa bumi dapat merusak rumah dan fasilitas umum seperti
-              jembatan, jalan, rumah sakit, sekolah, dan lain sebagainya (BNPB, 2017). Terjadinya gempa
-              bumi tidak dapat diprediksi dan tidak dapat dicegah, namun dampak yang ditimbulkan
-              dapat dikurangi.
+              jembatan, jalan, rumah sakit, sekolah, dan lain sebagainya (BNPB, 2017). Terjadinya
+              gempa bumi tidak dapat diprediksi dan tidak dapat dicegah, namun dampak yang
+              ditimbulkan dapat dikurangi.
               <br />
-              Indonesia yang rentan terhadap gempa bumi disebabkan karena letak indonesia
-              yang berada di antara tiga lempeng besar yaitu lempeng Eurasia, Pasifik, dan Indo-Australia.
-              Zona lempeng Pasifik dicirikan dengan adanya palung yang dalam. Lempeng ini berada di
-              Halmahera dan bagian utara Papua. Selanjutnya zona lempeng Indo-Australia dan Eurasia
-              berada di lepas pantai selatan Nusa Tenggara, selatan Jawa, dan barat Sumatera. Pada
-              tanggal 26 Desember 2004, terjadi gempa bumi di Aceh yang pusat gempanya berada 250
-              km di tenggara Banda Aceh. Dampak gempa ini sangat dahsyat karena diikuti dengan
-              tsunami yang mengakibatkan korban jiwa sebanyak 227.900 orang.
+              Indonesia yang rentan terhadap gempa bumi disebabkan karena letak indonesia yang
+              berada di antara tiga lempeng besar yaitu lempeng Eurasia, Pasifik, dan
+              Indo-Australia. Zona lempeng Pasifik dicirikan dengan adanya palung yang dalam.
+              Lempeng ini berada di Halmahera dan bagian utara Papua. Selanjutnya zona lempeng
+              Indo-Australia dan Eurasia berada di lepas pantai selatan Nusa Tenggara, selatan Jawa,
+              dan barat Sumatera. Pada tanggal 26 Desember 2004, terjadi gempa bumi di Aceh yang
+              pusat gempanya berada 250 km di tenggara Banda Aceh. Dampak gempa ini sangat dahsyat
+              karena diikuti dengan tsunami yang mengakibatkan korban jiwa sebanyak 227.900 orang.
             </p>
             <div id="breakPoint2" />
             <div className="w-full h-0.5 bg-slate-300 my-[3vh]" />
             <p className="font-bold">Karakteristik gempa bumi:</p>
             <ul>
-              <li>
-                a. Berlangsung dalam waktu yang singkat
-              </li>
-              <li>
-                b. Berpotensi terulang kembali
-              </li>
-              <li>
-                c. Lokasi kejadian tertentu
-              </li>
-              <li>
-                d. Akibatnya dapat menimbulkan bencana
-              </li>
-              <li>
-                e. Tidak dapat diprediksi, namun dampaknya dapat dikurangi
-              </li>
+              <li>a. Berlangsung dalam waktu yang singkat</li>
+              <li>b. Berpotensi terulang kembali</li>
+              <li>c. Lokasi kejadian tertentu</li>
+              <li>d. Akibatnya dapat menimbulkan bencana</li>
+              <li>e. Tidak dapat diprediksi, namun dampaknya dapat dikurangi</li>
             </ul>
             <br />
             <p className="font-bold">Dampak negatif:</p>
             <ul>
               <li>
-                a. Jaringan transportasi dan komunikasi terganggu, serta banyak bangunan dan fasilitas umum
-                menjadi rusak.
+                a. Jaringan transportasi dan komunikasi terganggu, serta banyak bangunan dan
+                fasilitas umum menjadi rusak.
               </li>
               <li>
-                b. Munculnya rekahan (patahan), longsoran, dan luncuran tanah yang dapat terjadi bersamaan
-                dengan gempa.
+                b. Munculnya rekahan (patahan), longsoran, dan luncuran tanah yang dapat terjadi
+                bersamaan dengan gempa.
               </li>
               <li>
                 c. Air bawah tanah dapat mengalami perubahan disebabkan oleh sesar atau guncangan.
               </li>
               <li>
-                d. Memicu timbulnya tsunami apabila gempa bumi berkekuatan besar dan berasal dari laut
-                dangkal.
+                d. Memicu timbulnya tsunami apabila gempa bumi berkekuatan besar dan berasal dari
+                laut dangkal.
               </li>
             </ul>
             <br />
@@ -199,7 +189,8 @@ export default function MateriGempa({ handleBack }) {
               </li>
               <li>
                 c. Memberikan informasi tentang struktur internal Bumi. Dengan mengukur waktu yang
-                diperlukan gelombang seismik untuk melintasi bumi maka dapat memetakan struktur bumi.
+                diperlukan gelombang seismik untuk melintasi bumi maka dapat memetakan struktur
+                bumi.
               </li>
             </ul>
           </div>
