@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { Caesar_Dressing } from 'next/font/google';
 
 import enums from '@/enums/enum';
-import { useState, useRef, useEffect } from 'react';
-import dummyQR from '../../public/display/dummyQR.png';
-import tsunamiImage from '../../public/display/tsunami.jpg';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { useEffect, useRef, useState } from 'react';
+import tsunamiImage from '../../public/display/tsunami.jpg';
+import qrTsunami from '../../public/qr/qr-erupsi.png';
 import BackButtonMateri from '../button/BackButtonMateri';
 import ExploreMapButtonMateri from '../button/ExploreMapButtonMateri';
 
@@ -105,7 +105,7 @@ export default function MateriTsunami({ handleBack }) {
               />
             ) : (
               <Image
-                src={dummyQR}
+                src={qrTsunami}
                 alt="kode qr"
                 className="w-3/4 cursor-pointer transition-transform transform hover:scale-105"
                 onClick={() => setShowImage(true)}
