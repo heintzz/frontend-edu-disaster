@@ -6,7 +6,7 @@ import enums from '@/enums/enum';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { useEffect, useRef, useState } from 'react';
 import tsunamiImage from '../../public/display/tsunami.jpg';
-import qrTsunami from '../../public/qr/qr-erupsi.png';
+import qrTsunami from '../../public/qr/qr-tsunami.png';
 import BackButtonMateri from '../button/BackButtonMateri';
 import ExploreMapButtonMateri from '../button/ExploreMapButtonMateri';
 
