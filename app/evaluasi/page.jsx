@@ -192,7 +192,7 @@ export default function HalamanEvaluasi() {
                 <span className={caesarDressing.className}>Selesai</span>
               </button>
               <p className="text-sm lg:text-xl font-semibold">Soal no. {currentIndex + 1}</p>
-              <p className="text-sm my-3 lg:text-base lg:my-10">{activeQuestion.question}</p>
+              <p className="text-sm my-5 lg:text-base lg:my-10">{activeQuestion.question}</p>
               <div className="flex flex-col text-sm gap-y-4 lg:text-base lg:gap-y-8">
                 {activeQuestion.answers.map((answer, index) => {
                   const splits = answer.split('. ');

@@ -82,7 +82,6 @@ const Map = ({ disasterType }) => {
     });
   }, [disasterType]);
 
-  console.log({ disasterType, marker });
 
   L.TileLayer.prototype.options.minZoom = 4;
 
