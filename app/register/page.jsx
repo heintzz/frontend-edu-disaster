@@ -4,6 +4,7 @@ import enums from '@/enums/enum';
 import apiV1 from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
   const router = useRouter();
