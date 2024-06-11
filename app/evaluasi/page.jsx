@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import { useRecoilValue } from 'recoil';
 import arrowBack from '../../public/arrowBack.svg';
 import arrowNext from '../../public/arrowNext.svg';
+import enums from '@/enums/enum';
 
 const caesarDressing = Caesar_Dressing({ subsets: ['latin'], weight: '400' });
 
@@ -58,7 +59,7 @@ export default function HalamanEvaluasi() {
             JSON.stringify({
               answers: answeredQuestions,
               is_completed: true,
-              score: res.data.score,
+              score: res.data?.score,
             })
           );
           await StudentServices.updateStudentProgress(enums.MODULES.EVALUATION);
@@ -70,17 +71,18 @@ export default function HalamanEvaluasi() {
         setIsLoadingSubmit(false);
         toast.error('Gagal mengirim jawaban, coba lagi nanti');
       }
-    } else {
-      localStorage.setItem(
-        'edudisaster_eval',
-        JSON.stringify({
-          answers: answeredQuestions,
-          is_completed: true,
-          score: koreksiJawaban(answeredQuestions),
-        })
-      );
-      setEvaluationCompleted(true);
     }
+    // } else {
+    //   localStorage.setItem(
+    //     'edudisaster_eval',
+    //     JSON.stringify({
+    //       answers: answeredQuestions,
+    //       is_completed: true,
+    //       score: koreksiJawaban(answeredQuestions),
+    //     })
+    //   );
+    //   setEvaluationCompleted(true);
+    // }
   };
 
   useEffect(() => {

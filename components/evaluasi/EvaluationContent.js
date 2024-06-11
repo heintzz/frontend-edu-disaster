@@ -18,6 +18,8 @@ export default function EvaluationContent() {
 
   const [classroom, setClassroom] = useState(null);
 
+  console.log(classroom)
+
   useEffect(() => {
     (async () => {
       try {

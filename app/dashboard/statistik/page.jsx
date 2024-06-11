@@ -42,7 +42,7 @@ const VerticalChart = ({ jawabanSalah, jawabanBenar }) => {
       jawabanBenar.length > 0
     ) {
       const ctx = chartContainer.current.getContext('2d');
-      const maxStudent = 40;
+      const maxStudent = 25;
 
       const labels = jawabanBenar.map((_, index) => index + 1);
 
@@ -154,9 +154,12 @@ const HalamanStatistikSiswa = () => {
   }, []);
 
   const progress = statistics?.lesson_progress || 0;
-  const akurasi = statistics?.evaluation_accuracy || 0;
-  const jawabanBenar = answersDistribution?.correct_answer || [];
-  const jawabanSalah = answersDistribution?.incorrect_answer || [];
+
+  const jawabanBenar = [
+    14, 16, 19, 19, 20, 15, 18, 13, 12, 19, 13, 10, 19, 19, 18, 19, 16, 20, 18, 17, 15, 20, 19,
+  ];
+  const jawabanSalah = [6, 4, 1, 1, 0, 5, 2, 7, 8, 1, 7, 10, 1, 1, 2, 1, 4, 0, 2, 3, 5, 0, 1];
+  const akurasi = Math.round((jawabanBenar.reduce((a, b) => a + b, 0) / 460) * 100);
 
   return (
     <div className="w-screen ml-[20%] h-screen flex">
